@@ -1,0 +1,673 @@
+
+======================================================================
+SANITY REPORT - Device Calibration Validation
+======================================================================
+
+Generating test profiles and checking against calibration targets...
+Loading configuration...
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+======================================================================
+Analyzing: single_professional - winter
+======================================================================
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Single Professional
+Period: 2024-01-15 00:00:00 to 2024-01-22 00:00:00
+Resolution: 10 minutes
+Devices: 20
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 16233.96it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Single Professional
+Simulation period: 7 days
+Total energy: 361.7 kWh
+Average daily: 51.7 kWh/day
+Peak demand: 8.92 kW
+Average demand: 2.15 kW
+Load factor: 24.1%
+
+Top 5 energy consumers:
+  1. Heat Pump: 295.2 kWh (81.6%)
+  2. Electric Water Heater: 42.5 kWh (11.7%)
+  3. Refrigerator: 9.4 kWh (2.6%)
+  4. Electric Stove: 3.7 kWh (1.0%)
+  5. WiFi Router: 2.0 kWh (0.6%)
+============================================================
+
+
+Device Analysis (sorted by daily energy):
+Device                         Status kWh/day    Annual kWh   Issues
+------------------------------------------------------------------------------------------------------------------------
+Heat_Pump                      ✓      42.18      15394        
+Electric_Water_Heater          ?      6.07       2215         No calibration target
+Refrigerator                   ✓      1.34       488          
+Electric_Stove                 ✓      0.53       194          
+WiFi_Router                    ✓      0.29       105          
+Electric_Kettle                ?      0.26       95           No calibration target
+Security_System                ✓      0.19       70           
+TV_Living_Room                 ⚠      0.16       58           Avg power 6.6W < 50W
+Kitchen_Lights                 ⚠      0.13       46           Avg power 5.3W < 10W
+EV_Charger_Level_2_7.2kW       ?      0.12       44           No calibration target
+Hair_Dryer                     ?      0.10       37           No calibration target
+Laptop                         ⚠      0.08       28           Avg power 3.2W < 20W
+Microwave                      ✓      0.06       22           
+TV_Bedroom                     ⚠      0.05       17           Avg power 2.0W < 30W
+Toaster                        ✓      0.04       16           
+Coffee_Maker                   ✓      0.04       14           
+Living_Room_Lights             ⚠      0.03       11           Avg power 1.3W < 15W
+Bathroom_Lights                ⚠      0.01       5            Avg power 0.6W < 5W
+
+ Summary: 8 PASS, 6 WARN, 0 FAIL
+
+======================================================================
+Analyzing: single_professional - summer
+======================================================================
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Single Professional
+Period: 2024-07-15 00:00:00 to 2024-07-22 00:00:00
+Resolution: 10 minutes
+Devices: 20
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 17019.27it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Single Professional
+Simulation period: 7 days
+Total energy: 363.0 kWh
+Average daily: 51.9 kWh/day
+Peak demand: 11.32 kW
+Average demand: 2.16 kW
+Load factor: 19.1%
+
+Top 5 energy consumers:
+  1. Heat Pump: 296.1 kWh (81.6%)
+  2. Electric Water Heater: 26.0 kWh (7.2%)
+  3. EV Charger Level 2 7.2kW: 16.2 kWh (4.5%)
+  4. Refrigerator: 12.4 kWh (3.4%)
+  5. Electric Stove: 3.8 kWh (1.1%)
+============================================================
+
+
+Device Analysis (sorted by daily energy):
+Device                         Status kWh/day    Annual kWh   Issues
+------------------------------------------------------------------------------------------------------------------------
+Heat_Pump                      ✓      42.30      15440        
+Electric_Water_Heater          ?      3.72       1356         No calibration target
+EV_Charger_Level_2_7.2kW       ?      2.31       843          No calibration target
+Refrigerator                   ✓      1.78       649          
+Electric_Stove                 ✓      0.55       200          
+WiFi_Router                    ✓      0.29       105          
+Security_System                ✓      0.19       70           
+TV_Living_Room                 ⚠      0.17       60           Avg power 6.9W < 50W
+Laptop                         ⚠      0.14       50           Avg power 5.7W < 20W
+Living_Room_Lights             ⚠      0.11       39           Avg power 4.5W < 15W
+TV_Bedroom                     ⚠      0.06       23           Avg power 2.6W < 30W
+Coffee_Maker                   ✓      0.06       20           
+Hair_Dryer                     ?      0.05       19           No calibration target
+Electric_Kettle                ?      0.05       18           No calibration target
+Kitchen_Lights                 ⚠      0.04       14           Avg power 1.6W < 10W
+Bathroom_Lights                ⚠      0.03       12           Avg power 1.4W < 5W
+Microwave                      ✓      0.03       10           
+
+ Summary: 7 PASS, 6 WARN, 0 FAIL
+
+======================================================================
+Analyzing: young_couple - winter
+======================================================================
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Young Couple
+Period: 2024-01-15 00:00:00 to 2024-01-22 00:00:00
+Resolution: 10 minutes
+Devices: 31
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating:  77%|███████▋  | 772/1008 [00:00<00:00, 7716.90it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 5472.61it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Young Couple
+Simulation period: 7 days
+Total energy: 415.1 kWh
+Average daily: 59.3 kWh/day
+Peak demand: 15.19 kW
+Average demand: 2.47 kW
+Load factor: 16.3%
+
+Top 5 energy consumers:
+  1. Heat Pump: 295.7 kWh (71.2%)
+  2. EV Charger Level 2 7.2kW: 44.5 kWh (10.7%)
+  3. Electric Water Heater: 41.5 kWh (10.0%)
+  4. Refrigerator: 9.4 kWh (2.3%)
+  5. Freezer: 5.9 kWh (1.4%)
+============================================================
+
+
+Device Analysis (sorted by daily energy):
+Device                         Status kWh/day    Annual kWh   Issues
+------------------------------------------------------------------------------------------------------------------------
+Heat_Pump                      ✓      42.24      15417        
+EV_Charger_Level_2_7.2kW       ?      6.35       2318         No calibration target
+Electric_Water_Heater          ?      5.93       2163         No calibration target
+Refrigerator                   ✓      1.34       488          
+Freezer                        ✓      0.85       309          
+Electric_Stove                 ✓      0.34       122          
+Gaming_Console_PlayStation_Xbox ⚠      0.31       112          Avg power 12.8W < 50W
+WiFi_Router                    ✓      0.29       105          
+Electric_Oven                  ?      0.22       81           No calibration target
+Security_System                ✓      0.19       70           
+Laptop                         ⚠      0.19       69           Avg power 7.9W < 20W; Runtime 24.0h > 12h/day
+Living_Room_Lights             ⚠      0.18       66           Avg power 7.5W < 15W
+Dishwasher                     ✓      0.14       51           
+Stereo_System                  ?      0.13       48           No calibration target
+Hair_Dryer                     ?      0.12       45           No calibration target
+Electric_Kettle                ?      0.12       43           No calibration target
+TV_Living_Room                 ⚠      0.10       36           Avg power 4.1W < 50W
+Outdoor_Lights                 ?      0.07       27           No calibration target
+Microwave                      ✓      0.05       19           
+TV_Bedroom                     ⚠      0.05       18           Avg power 2.0W < 30W
+Toaster                        ✓      0.03       11           
+Electric_Shaver                ?      0.02       9            No calibration target
+Kitchen_Lights                 ⚠      0.02       7            Avg power 0.8W < 10W
+Bathroom_Lights                ⚠      0.02       7            Avg power 0.8W < 5W
+
+ Summary: 9 PASS, 7 WARN, 0 FAIL
+
+======================================================================
+Analyzing: young_couple - summer
+======================================================================
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Young Couple
+Period: 2024-07-15 00:00:00 to 2024-07-22 00:00:00
+Resolution: 10 minutes
+Devices: 31
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 10321.72it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Young Couple
+Simulation period: 7 days
+Total energy: 360.2 kWh
+Average daily: 51.5 kWh/day
+Peak demand: 6.84 kW
+Average demand: 2.14 kW
+Load factor: 31.3%
+
+Top 5 energy consumers:
+  1. Heat Pump: 297.2 kWh (82.5%)
+  2. Electric Water Heater: 25.7 kWh (7.1%)
+  3. Refrigerator: 12.5 kWh (3.5%)
+  4. Freezer: 8.0 kWh (2.2%)
+  5. Electric Stove: 3.3 kWh (0.9%)
+============================================================
+
+
+Device Analysis (sorted by daily energy):
+Device                         Status kWh/day    Annual kWh   Issues
+------------------------------------------------------------------------------------------------------------------------
+Heat_Pump                      ✓      42.45      15495        
+Electric_Water_Heater          ?      3.68       1342         No calibration target
+Refrigerator                   ✓      1.79       653          
+Freezer                        ✓      1.14       418          
+Electric_Stove                 ✓      0.47       170          
+WiFi_Router                    ✓      0.29       105          
+Gaming_Console_PlayStation_Xbox ⚠      0.27       99           Avg power 11.4W < 50W
+Laptop                         ⚠      0.26       94           Avg power 10.7W < 20W; Runtime 24.0h > 12h/day
+Security_System                ✓      0.19       70           
+Stereo_System                  ?      0.13       48           No calibration target
+EV_Charger_Level_2_7.2kW       ?      0.12       44           No calibration target
+TV_Living_Room                 ⚠      0.10       35           Avg power 4.0W < 50W
+Vacuum_Cleaner                 ✓      0.09       34           
+Hair_Dryer                     ?      0.09       31           No calibration target
+Microwave                      ✓      0.08       28           
+Washing_Machine                ✓      0.07       26           
+Living_Room_Lights             ⚠      0.05       18           Avg power 2.1W < 15W
+TV_Bedroom                     ⚠      0.05       18           Avg power 2.0W < 30W
+Outdoor_Lights                 ?      0.05       17           No calibration target
+Electric_Kettle                ?      0.05       17           No calibration target
+Electric_Shaver                ?      0.02       9            No calibration target
+Toaster                        ✓      0.01       5            
+
+ Summary: 10 PASS, 5 WARN, 0 FAIL
+
+======================================================================
+Analyzing: family_with_children - winter
+======================================================================
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Family with Children
+Period: 2024-01-15 00:00:00 to 2024-01-22 00:00:00
+Resolution: 10 minutes
+Devices: 33
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating:  49%|████▊     | 491/1008 [00:00<00:00, 4899.48it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 6534.47it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Family with Children
+Simulation period: 7 days
+Total energy: 380.4 kWh
+Average daily: 54.3 kWh/day
+Peak demand: 11.64 kW
+Average demand: 2.26 kW
+Load factor: 19.5%
+
+Top 5 energy consumers:
+  1. Heat Pump: 297.4 kWh (78.2%)
+  2. Electric Water Heater: 41.6 kWh (10.9%)
+  3. Refrigerator: 9.4 kWh (2.5%)
+  4. Freezer: 5.9 kWh (1.6%)
+  5. Dishwasher: 4.0 kWh (1.0%)
+============================================================
+
+
+Device Analysis (sorted by daily energy):
+Device                         Status kWh/day    Annual kWh   Issues
+------------------------------------------------------------------------------------------------------------------------
+Heat_Pump                      ✓      42.48      15506        
+Electric_Water_Heater          ?      5.94       2168         No calibration target
+Refrigerator                   ✓      1.34       488          
+Freezer                        ✓      0.84       308          
+Dishwasher                     ✓      0.57       208          
+Electric_Stove                 ✓      0.43       157          
+Desktop_Computer               ⚠      0.31       112          Avg power 12.7W < 100W
+WiFi_Router                    ✓      0.29       105          
+Clothes_Dryer                  ✓      0.28       104          
+Gaming_Console_PlayStation_Xbox ⚠      0.28       101          Avg power 11.5W < 50W
+Laptop                         ⚠      0.23       85           Avg power 9.7W < 20W; Runtime 24.0h > 12h/day
+TV_Living_Room                 ⚠      0.20       72           Avg power 8.2W < 50W
+Security_System                ✓      0.19       70           
+Kitchen_Lights                 ⚠      0.14       53           Avg power 6.0W < 10W
+Living_Room_Lights             ⚠      0.14       52           Avg power 5.9W < 15W
+Printer                        ?      0.13       46           No calibration target
+Stereo_System                  ?      0.12       44           No calibration target
+Electric_Kettle                ?      0.09       35           No calibration target
+TV_Bedroom                     ⚠      0.08       28           Avg power 3.1W < 30W
+Microwave                      ✓      0.06       23           
+Coffee_Maker                   ✓      0.06       23           
+Bedroom_Lights                 ⚠      0.05       17           Avg power 1.9W < 5W
+Outdoor_Lights                 ?      0.03       11           No calibration target
+Electric_Shaver                ?      0.02       9            No calibration target
+Toaster                        ✓      0.01       5            
+Bathroom_Lights                ⚠      0.01       5            Avg power 0.6W < 5W
+
+ Summary: 11 PASS, 9 WARN, 0 FAIL
+
+======================================================================
+Analyzing: family_with_children - summer
+======================================================================
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Family with Children
+Period: 2024-07-15 00:00:00 to 2024-07-22 00:00:00
+Resolution: 10 minutes
+Devices: 33
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 10880.25it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Family with Children
+Simulation period: 7 days
+Total energy: 365.5 kWh
+Average daily: 52.2 kWh/day
+Peak demand: 9.49 kW
+Average demand: 2.18 kW
+Load factor: 22.9%
+
+Top 5 energy consumers:
+  1. Heat Pump: 296.5 kWh (81.1%)
+  2. Electric Water Heater: 25.5 kWh (7.0%)
+  3. Refrigerator: 12.5 kWh (3.4%)
+  4. Freezer: 8.0 kWh (2.2%)
+  5. Electric Stove: 4.7 kWh (1.3%)
+============================================================
+
+
+Device Analysis (sorted by daily energy):
+Device                         Status kWh/day    Annual kWh   Issues
+------------------------------------------------------------------------------------------------------------------------
+Heat_Pump                      ✓      42.35      15458        
+Electric_Water_Heater          ?      3.64       1329         No calibration target
+Refrigerator                   ✓      1.78       650          
+Freezer                        ✓      1.14       415          
+Electric_Stove                 ✓      0.67       246          
+Clothes_Dryer                  ✓      0.40       147          
+WiFi_Router                    ✓      0.29       105          
+Gaming_Console_PlayStation_Xbox ⚠      0.29       105          Avg power 11.9W < 50W
+Desktop_Computer               ⚠      0.22       82           Avg power 9.4W < 100W
+Laptop                         ⚠      0.21       75           Avg power 8.5W < 20W; Runtime 24.0h > 12h/day
+TV_Living_Room                 ⚠      0.20       73           Avg power 8.3W < 50W
+Security_System                ✓      0.19       70           
+Outdoor_Lights                 ?      0.13       46           No calibration target
+Printer                        ?      0.13       46           No calibration target
+Stereo_System                  ?      0.12       44           No calibration target
+Living_Room_Lights             ⚠      0.08       29           Avg power 3.4W < 15W
+TV_Bedroom                     ⚠      0.07       25           Avg power 2.8W < 30W
+Coffee_Maker                   ✓      0.06       21           
+Bedroom_Lights                 ⚠      0.06       21           Avg power 2.4W < 5W
+Washing_Machine                ✓      0.06       20           
+Electric_Kettle                ?      0.05       17           No calibration target
+Microwave                      ✓      0.04       16           
+Electric_Shaver                ?      0.02       9            No calibration target
+Toaster                        ✓      0.01       5            
+Bathroom_Lights                ⚠      0.01       4            Avg power 0.4W < 5W
+
+ Summary: 11 PASS, 8 WARN, 0 FAIL
+
+======================================================================
+Analyzing: large_family - winter
+======================================================================
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Large Family
+Period: 2024-01-15 00:00:00 to 2024-01-22 00:00:00
+Resolution: 10 minutes
+Devices: 37
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 10516.75it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Large Family
+Simulation period: 7 days
+Total energy: 375.8 kWh
+Average daily: 53.7 kWh/day
+Peak demand: 9.30 kW
+Average demand: 2.24 kW
+Load factor: 24.1%
+
+Top 5 energy consumers:
+  1. Heat Pump: 295.3 kWh (78.6%)
+  2. Electric Water Heater: 41.6 kWh (11.1%)
+  3. Refrigerator: 9.4 kWh (2.5%)
+  4. Freezer: 5.9 kWh (1.6%)
+  5. Electric Stove: 2.5 kWh (0.7%)
+============================================================
+
+
+Device Analysis (sorted by daily energy):
+Device                         Status kWh/day    Annual kWh   Issues
+------------------------------------------------------------------------------------------------------------------------
+Heat_Pump                      ✓      42.19      15398        
+Electric_Water_Heater          ?      5.94       2169         No calibration target
+Refrigerator                   ✓      1.34       490          
+Freezer                        ✓      0.84       308          
+Electric_Stove                 ✓      0.36       130          
+Gaming_Console_PlayStation_Xbox ⚠      0.35       128          Avg power 14.6W < 50W
+Desktop_Computer               ⚠      0.29       107          Avg power 12.2W < 100W
+WiFi_Router                    ✓      0.29       105          
+Clothes_Dryer                  ✓      0.29       105          
+Security_System                ✓      0.19       70           
+Laptop                         ⚠      0.18       65           Avg power 7.4W < 20W; Runtime 24.0h > 12h/day
+Washing_Machine                ✓      0.16       57           
+TV_Bedroom                     ⚠      0.14       53           Avg power 6.0W < 30W; Runtime 24.0h > 4h/day
+Hair_Dryer                     ?      0.13       49           No calibration target
+Living_Room_Lights             ⚠      0.13       46           Avg power 5.3W < 15W
+Stereo_System                  ?      0.12       44           No calibration target
+Printer                        ?      0.12       44           No calibration target
+Outdoor_Lights                 ?      0.11       41           No calibration target
+Microwave                      ✓      0.11       40           
+TV_Living_Room                 ⚠      0.09       33           Avg power 3.8W < 50W
+Kitchen_Lights                 ⚠      0.08       29           Avg power 3.3W < 10W
+Electric_Kettle                ?      0.07       26           No calibration target
+Coffee_Maker                   ✓      0.05       19           
+Bedroom_Lights                 ⚠      0.03       12           Avg power 1.3W < 5W
+Bathroom_Lights                ⚠      0.03       11           Avg power 1.3W < 5W
+Electric_Shaver                ?      0.02       9            No calibration target
+Toaster                        ✓      0.01       5            
+
+ Summary: 11 PASS, 9 WARN, 0 FAIL
+
+======================================================================
+Analyzing: large_family - summer
+======================================================================
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Large Family
+Period: 2024-07-15 00:00:00 to 2024-07-22 00:00:00
+Resolution: 10 minutes
+Devices: 37
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 10263.81it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Large Family
+Simulation period: 7 days
+Total energy: 361.7 kWh
+Average daily: 51.7 kWh/day
+Peak demand: 7.34 kW
+Average demand: 2.15 kW
+Load factor: 29.3%
+
+Top 5 energy consumers:
+  1. Heat Pump: 295.8 kWh (81.8%)
+  2. Electric Water Heater: 25.6 kWh (7.1%)
+  3. Refrigerator: 12.5 kWh (3.5%)
+  4. Freezer: 8.0 kWh (2.2%)
+  5. Dishwasher: 2.3 kWh (0.6%)
+============================================================
+
+
+Device Analysis (sorted by daily energy):
+Device                         Status kWh/day    Annual kWh   Issues
+------------------------------------------------------------------------------------------------------------------------
+Heat_Pump                      ✓      42.26      15423        
+Electric_Water_Heater          ?      3.65       1334         No calibration target
+Refrigerator                   ✓      1.79       652          
+Freezer                        ✓      1.14       416          
+Dishwasher                     ✓      0.33       121          
+WiFi_Router                    ✓      0.29       105          
+Electric_Stove                 ✓      0.26       96           
+Gaming_Console_PlayStation_Xbox ⚠      0.26       96           Avg power 11.0W < 50W
+Desktop_Computer               ⚠      0.26       96           Avg power 10.9W < 100W
+Security_System                ✓      0.19       70           
+Laptop                         ⚠      0.15       53           Avg power 6.1W < 20W; Runtime 24.0h > 12h/day
+TV_Living_Room                 ⚠      0.15       53           Avg power 6.1W < 50W
+Stereo_System                  ?      0.14       51           No calibration target
+Printer                        ?      0.12       44           No calibration target
+Outdoor_Lights                 ?      0.10       38           No calibration target
+Washing_Machine                ✓      0.10       37           
+Electric_Kettle                ?      0.10       35           No calibration target
+TV_Bedroom                     ⚠      0.10       35           Avg power 4.0W < 30W; Runtime 24.0h > 4h/day
+Microwave                      ✓      0.07       27           
+Coffee_Maker                   ✓      0.06       21           
+Kitchen_Lights                 ⚠      0.06       20           Avg power 2.3W < 10W
+Hair_Dryer                     ?      0.05       18           No calibration target
+Electric_Shaver                ?      0.02       9            No calibration target
+Bathroom_Lights                ⚠      0.02       6            Avg power 0.7W < 5W
+
+ Summary: 10 PASS, 7 WARN, 0 FAIL
+
+======================================================================
+Analyzing: retired_couple - winter
+======================================================================
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Retired Couple
+Period: 2024-01-15 00:00:00 to 2024-01-22 00:00:00
+Resolution: 10 minutes
+Devices: 28
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 11986.85it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Retired Couple
+Simulation period: 7 days
+Total energy: 373.2 kWh
+Average daily: 53.3 kWh/day
+Peak demand: 8.78 kW
+Average demand: 2.22 kW
+Load factor: 25.3%
+
+Top 5 energy consumers:
+  1. Heat Pump: 295.8 kWh (79.3%)
+  2. Electric Water Heater: 41.5 kWh (11.1%)
+  3. Refrigerator: 9.4 kWh (2.5%)
+  4. Freezer: 5.9 kWh (1.6%)
+  5. Clothes Dryer: 3.3 kWh (0.9%)
+============================================================
+
+
+Device Analysis (sorted by daily energy):
+Device                         Status kWh/day    Annual kWh   Issues
+------------------------------------------------------------------------------------------------------------------------
+Heat_Pump                      ✓      42.25      15422        
+Electric_Water_Heater          ?      5.93       2163         No calibration target
+Refrigerator                   ✓      1.35       491          
+Freezer                        ✓      0.84       307          
+Clothes_Dryer                  ✓      0.48       174          
+Electric_Stove                 ✓      0.35       129          
+WiFi_Router                    ✓      0.29       105          
+TV_Living_Room                 ⚠      0.25       91           Avg power 10.4W < 50W
+Dishwasher                     ✓      0.23       82           
+Security_System                ✓      0.19       70           
+Electric_Kettle                ?      0.17       61           No calibration target
+Outdoor_Lights                 ?      0.13       49           No calibration target
+Laptop                         ⚠      0.13       48           Avg power 5.5W < 20W
+Microwave                      ✓      0.12       44           
+Stereo_System                  ?      0.12       44           No calibration target
+Living_Room_Lights             ⚠      0.10       36           Avg power 4.1W < 15W
+Iron                           ?      0.08       30           No calibration target
+TV_Bedroom                     ⚠      0.08       29           Avg power 3.3W < 30W
+Coffee_Maker                   ✓      0.08       27           
+Toaster                        ✓      0.04       16           
+Bedroom_Lights                 ⚠      0.03       12           Avg power 1.4W < 5W
+Electric_Shaver                ?      0.02       9            No calibration target
+Hair_Dryer                     ?      0.02       8            No calibration target
+Kitchen_Lights                 ⚠      0.02       6            Avg power 0.7W < 10W
+
+ Summary: 11 PASS, 6 WARN, 0 FAIL
+
+======================================================================
+Analyzing: retired_couple - summer
+======================================================================
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Retired Couple
+Period: 2024-07-15 00:00:00 to 2024-07-22 00:00:00
+Resolution: 10 minutes
+Devices: 28
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 10436.91it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Retired Couple
+Simulation period: 7 days
+Total energy: 356.0 kWh
+Average daily: 50.9 kWh/day
+Peak demand: 6.96 kW
+Average demand: 2.12 kW
+Load factor: 30.4%
+
+Top 5 energy consumers:
+  1. Heat Pump: 295.1 kWh (82.9%)
+  2. Electric Water Heater: 25.3 kWh (7.1%)
+  3. Refrigerator: 12.5 kWh (3.5%)
+  4. Freezer: 8.0 kWh (2.2%)
+  5. Electric Stove: 3.7 kWh (1.0%)
+============================================================
+
+
+Device Analysis (sorted by daily energy):
+Device                         Status kWh/day    Annual kWh   Issues
+------------------------------------------------------------------------------------------------------------------------
+Heat_Pump                      ✓      42.16      15389        
+Electric_Water_Heater          ?      3.62       1320         No calibration target
+Refrigerator                   ✓      1.78       651          
+Freezer                        ✓      1.14       416          
+Electric_Stove                 ✓      0.53       193          
+WiFi_Router                    ✓      0.29       105          
+Security_System                ✓      0.19       70           
+Outdoor_Lights                 ?      0.15       53           No calibration target
+Washing_Machine                ✓      0.14       53           
+Stereo_System                  ?      0.12       44           No calibration target
+Living_Room_Lights             ⚠      0.11       42           Avg power 4.8W < 15W
+TV_Living_Room                 ⚠      0.11       40           Avg power 4.5W < 50W
+Microwave                      ✓      0.09       33           
+Laptop                         ⚠      0.08       30           Avg power 3.4W < 20W
+Electric_Kettle                ?      0.07       26           No calibration target
+Coffee_Maker                   ✓      0.07       26           
+TV_Bedroom                     ⚠      0.06       22           Avg power 2.5W < 30W
+Kitchen_Lights                 ⚠      0.05       18           Avg power 2.1W < 10W
+Hair_Dryer                     ?      0.04       14           No calibration target
+Electric_Shaver                ?      0.02       9            No calibration target
+Bathroom_Lights                ⚠      0.02       6            Avg power 0.7W < 5W
+
+ Summary: 9 PASS, 6 WARN, 0 FAIL
+
+======================================================================
+Full report saved to: sanity_report.csv
+======================================================================
+
+OVERALL SUMMARY:
+  Total device-season combinations analyzed: 228
+  ✓ PASS: 97 (42.5%)
+  ⚠ WARN: 69 (30.3%)
+  ✗ FAIL: 0 (0.0%)
+
+✓ All devices within acceptable ranges!

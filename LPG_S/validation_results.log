@@ -1,0 +1,329 @@
+
+======================================================================
+LOAD PROFILE GENERATOR - OUTPUT VALIDATION
+======================================================================
+
+This script validates that all critical fixes are working correctly:
+  1. Seasonal devices (AC=0 in winter, heater=0 in summer)
+  2. Cycling devices (fridge/freezer show on/off cycles)
+  3. Resolution independence (10min, 15min, 30min all work)
+  4. Realistic monthly energy totals
+
+======================================================================
+VALIDATION 1: Seasonal Device Behavior
+======================================================================
+
+1a. Testing Central AC in winter (should be ~0W)...
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Young Couple
+Period: 2024-01-15 00:00:00 to 2024-01-22 00:00:00
+Resolution: 10 minutes
+Devices: 31
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 12409.18it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Young Couple
+Simulation period: 7 days
+Total energy: 352.6 kWh
+Average daily: 50.4 kWh/day
+Peak demand: 8.58 kW
+Average demand: 2.10 kW
+Load factor: 24.5%
+
+Top 5 energy consumers:
+  1. Heat Pump: 294.6 kWh (83.5%)
+  2. Electric Water Heater: 21.9 kWh (6.2%)
+  3. Refrigerator: 9.4 kWh (2.7%)
+  4. Freezer: 5.9 kWh (1.7%)
+  5. Gaming Console PlayStation Xbox: 2.8 kWh (0.8%)
+============================================================
+
+
+1b. Testing Space Heater in summer (should be ~0W)...
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Family with Children
+Period: 2024-07-15 00:00:00 to 2024-07-22 00:00:00
+Resolution: 10 minutes
+Devices: 33
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 11593.31it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Family with Children
+Simulation period: 7 days
+Total energy: 350.3 kWh
+Average daily: 50.0 kWh/day
+Peak demand: 7.75 kW
+Average demand: 2.09 kW
+Load factor: 26.9%
+
+Top 5 energy consumers:
+  1. Heat Pump: 296.3 kWh (84.6%)
+  2. Refrigerator: 12.5 kWh (3.6%)
+  3. Electric Water Heater: 9.9 kWh (2.8%)
+  4. Freezer: 8.0 kWh (2.3%)
+  5. Electric Stove: 3.7 kWh (1.1%)
+============================================================
+
+
+======================================================================
+VALIDATION 2: Cycling Device Behavior (Fridge/Freezer)
+======================================================================
+
+Generating profile with cycling devices...
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Family with Children
+Period: 2024-03-01 00:00:00 to 2024-03-02 00:00:00
+Resolution: 10 minutes
+Devices: 33
+Simulating:   0%|          | 0/144 [00:00<?, ?it/s]Simulating: 100%|██████████| 144/144 [00:00<00:00, 11626.85it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Family with Children
+Simulation period: 1 days
+Total energy: 27.1 kWh
+Average daily: 27.1 kWh/day
+Peak demand: 5.02 kW
+Average demand: 1.13 kW
+Load factor: 22.5%
+
+Top 5 energy consumers:
+  1. Heat Pump: 12.6 kWh (46.5%)
+  2. Electric Water Heater: 5.8 kWh (21.5%)
+  3. Clothes Dryer: 3.3 kWh (12.2%)
+  4. Refrigerator: 1.5 kWh (5.6%)
+  5. Freezer: 1.0 kWh (3.7%)
+============================================================
+
+
+Refrigerator:
+   Min power: 2.9W (standby)
+   Max power: 197.3W (compressor on)
+   Mean power: 62.8W
+   Transitions (on/off): 47
+   ✓ PASS: Refrigerator shows proper cycling
+
+Freezer:
+   Min power: 1.9W (standby)
+   Max power: 139.7W (compressor on)
+   Transitions (on/off): 47
+   ✓ PASS: Freezer shows proper cycling
+
+======================================================================
+VALIDATION 3: Resolution Independence
+======================================================================
+
+Testing 10-minute resolution...
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Single Professional
+Period: 2024-02-01 00:00:00 to 2024-02-08 00:00:00
+Resolution: 10 minutes
+Devices: 20
+Simulating:   0%|          | 0/1008 [00:00<?, ?it/s]Simulating: 100%|██████████| 1008/1008 [00:00<00:00, 14559.89it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Single Professional
+Simulation period: 7 days
+Total energy: 361.9 kWh
+Average daily: 51.7 kWh/day
+Peak demand: 10.91 kW
+Average demand: 2.15 kW
+Load factor: 19.7%
+
+Top 5 energy consumers:
+  1. Heat Pump: 296.6 kWh (81.9%)
+  2. Electric Water Heater: 24.2 kWh (6.7%)
+  3. EV Charger Level 2 7.2kW: 20.8 kWh (5.8%)
+  4. Refrigerator: 9.3 kWh (2.6%)
+  5. WiFi Router: 2.0 kWh (0.6%)
+============================================================
+
+   Daily average: 51.7 kWh/day
+
+Testing 15-minute resolution...
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Single Professional
+Period: 2024-02-01 00:00:00 to 2024-02-08 00:00:00
+Resolution: 15 minutes
+Devices: 20
+Simulating:   0%|          | 0/672 [00:00<?, ?it/s]Simulating: 100%|██████████| 672/672 [00:00<00:00, 19223.52it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Single Professional
+Simulation period: 7 days
+Total energy: 401.8 kWh
+Average daily: 57.4 kWh/day
+Peak demand: 11.01 kW
+Average demand: 2.39 kW
+Load factor: 21.7%
+
+Top 5 energy consumers:
+  1. Heat Pump: 295.7 kWh (73.6%)
+  2. EV Charger Level 2 7.2kW: 54.3 kWh (13.5%)
+  3. Electric Water Heater: 30.9 kWh (7.7%)
+  4. Refrigerator: 9.1 kWh (2.3%)
+  5. WiFi Router: 2.0 kWh (0.5%)
+============================================================
+
+   Daily average: 57.4 kWh/day
+
+Testing 30-minute resolution...
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Single Professional
+Period: 2024-02-01 00:00:00 to 2024-02-08 00:00:00
+Resolution: 30 minutes
+Devices: 20
+Simulating:   0%|          | 0/336 [00:00<?, ?it/s]Simulating: 100%|██████████| 336/336 [00:00<00:00, 20013.15it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Single Professional
+Simulation period: 7 days
+Total energy: 399.0 kWh
+Average daily: 57.0 kWh/day
+Peak demand: 12.66 kW
+Average demand: 2.37 kW
+Load factor: 18.8%
+
+Top 5 energy consumers:
+  1. Heat Pump: 296.5 kWh (74.3%)
+  2. EV Charger Level 2 7.2kW: 56.7 kWh (14.2%)
+  3. Electric Water Heater: 24.5 kWh (6.1%)
+  4. Refrigerator: 9.8 kWh (2.5%)
+  5. WiFi Router: 2.0 kWh (0.5%)
+============================================================
+
+   Daily average: 57.0 kWh/day
+
+Comparison:
+   10 min:  51.7 kWh/day (±6.6% from mean)
+   15 min:  57.4 kWh/day (±3.7% from mean)
+   30 min:  57.0 kWh/day (±2.9% from mean)
+   ✓ PASS: All resolutions within ±20% of mean
+
+======================================================================
+VALIDATION 4: 1-min vs 10-min Consistency
+======================================================================
+
+Generating 1-minute profile...
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Young Couple
+Period: 2024-06-01 00:00:00 to 2024-06-02 00:00:00
+Resolution: 1 minutes
+Devices: 31
+Simulating:   0%|          | 0/1440 [00:00<?, ?it/s]Simulating:  92%|█████████▎| 1332/1440 [00:00<00:00, 13310.78it/s]Simulating: 100%|██████████| 1440/1440 [00:00<00:00, 13294.18it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Young Couple
+Simulation period: 1 days
+Total energy: 48.2 kWh
+Average daily: 48.2 kWh/day
+Peak demand: 4.33 kW
+Average demand: 2.01 kW
+Load factor: 46.3%
+
+Top 5 energy consumers:
+  1. Heat Pump: 42.2 kWh (87.7%)
+  2. Refrigerator: 1.8 kWh (3.7%)
+  3. Electric Water Heater: 1.2 kWh (2.5%)
+  4. Freezer: 1.1 kWh (2.4%)
+  5. Living Room Lights: 0.3 kWh (0.6%)
+============================================================
+
+
+Generating 10-minute profile...
+
+Loading configuration from config/
+✓ Loaded 35 devices from config/devices.yaml
+✓ Loaded 5 households from config/households.yaml
+✓ Configuration loaded successfully
+
+
+Generating load profile for Young Couple
+Period: 2024-06-01 00:00:00 to 2024-06-02 00:00:00
+Resolution: 10 minutes
+Devices: 31
+Simulating:   0%|          | 0/144 [00:00<?, ?it/s]Simulating: 100%|██████████| 144/144 [00:00<00:00, 12913.83it/s]
+
+============================================================
+GENERATION SUMMARY
+============================================================
+Household: Young Couple
+Simulation period: 1 days
+Total energy: 51.3 kWh
+Average daily: 51.3 kWh/day
+Peak demand: 7.57 kW
+Average demand: 2.14 kW
+Load factor: 28.2%
+
+Top 5 energy consumers:
+  1. Heat Pump: 42.3 kWh (82.3%)
+  2. Electric Water Heater: 2.7 kWh (5.3%)
+  3. Refrigerator: 1.8 kWh (3.5%)
+  4. Freezer: 1.2 kWh (2.3%)
+  5. Electric Stove: 0.8 kWh (1.6%)
+============================================================
+
+
+Results:
+   1-min energy:  48.156 kWh
+   10-min energy: 51.324 kWh
+   Difference:    6.58%
+
+
+❌ VALIDATION FAILED: Energy difference 6.58% > 5% tolerance
+

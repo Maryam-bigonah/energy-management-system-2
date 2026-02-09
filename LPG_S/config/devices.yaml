@@ -1,0 +1,792 @@
+# Device Database Configuration
+# All household electrical devices with realistic power ratings and usage patterns
+
+devices:
+  # ==================== ALWAYS ON DEVICES ====================
+  
+  refrigerator:
+    id: refrigerator
+    name: Refrigerator
+    category: always_on
+    pattern: cycling
+    standby_power_w: 3  # Between compressor cycles
+    active_power_w: 180
+    peak_power_w: 220
+    avg_duration_min: 25  # Compressor runtime per cycle
+    cycle_on_min: 20      # Compressor on time (33% duty)
+    cycle_off_min: 40     # Compressor off time
+    time_preferences:
+      - [0, 24]
+    expected_uses_per_day: 40  # Cycles per day
+    seasonal_factor:
+      winter: 0.9
+      spring: 1.0
+      summer: 1.2
+      fall: 1.0
+    weekday_factor: 1.0
+    requires_occupancy: false
+    
+  freezer:
+    id: freezer
+    name: Freezer
+    category: always_on
+    pattern: cycling
+    standby_power_w: 2
+    active_power_w: 120
+    peak_power_w: 150
+    avg_duration_min: 20
+    cycle_on_min: 20
+    cycle_off_min: 40
+    time_preferences:
+      - [0, 24]
+    expected_uses_per_day: 48
+    seasonal_factor:
+      winter: 0.85
+      spring: 1.0
+      summer: 1.15
+      fall: 1.0
+    weekday_factor: 1.0
+    requires_occupancy: false
+    
+  wifi_router:
+    id: wifi_router
+    name: WiFi Router
+    category: always_on
+    pattern: continuous
+    standby_power_w: 8
+    active_power_w: 12
+    peak_power_w: 15
+    avg_duration_min: 1440
+    time_preferences:
+      - [0, 24]
+    expected_uses_per_day: 1
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.0
+      summer: 1.0
+      fall: 1.0
+    weekday_factor: 1.0
+    requires_occupancy: false
+    
+  security_system:
+    id: security_system
+    name: Security System
+    category: always_on
+    pattern: continuous
+    standby_power_w: 5
+    active_power_w: 8
+    peak_power_w: 10
+    avg_duration_min: 1440
+    time_preferences:
+      - [0, 24]
+    expected_uses_per_day: 1
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.0
+      summer: 1.0
+      fall: 1.0
+    weekday_factor: 1.0
+    requires_occupancy: false
+    
+  # ==================== HVAC SYSTEMS ====================
+  
+  heat_pump:
+    id: heat_pump
+    name: Heat Pump
+    category: hvac
+    pattern: cycling
+    standby_power_w: 20
+    active_power_w: 3500
+    peak_power_w: 5000
+    cycle_on_min: 20
+    cycle_off_min: 20
+    time_preferences:
+      - [0, 24]
+    expected_uses_per_day: 0
+    seasonal_factor:
+      winter: 1.0
+      spring: 0.3
+      summer: 1.0
+      fall: 0.5
+    weekday_factor: 1.0
+    requires_occupancy: false
+    # Professor Layers
+    service_type: space_heating
+    shiftable: true
+    max_delay_min: 30
+    comfort_class: high
+    
+  central_ac:
+    id: central_ac
+    name: Central Air Conditioning
+    category: hvac
+    pattern: cycling
+    standby_power_w: 0  # Completely off in winter
+    active_power_w: 3000
+    peak_power_w: 4500
+    cycle_on_min: 20
+    cycle_off_min: 20
+    time_preferences:
+      - [0, 24]
+    expected_uses_per_day: 0
+    seasonal_factor:
+      winter: 0.0  # OFF
+      spring: 0.3
+      summer: 1.0
+      fall: 0.4
+    weekday_factor: 0.8
+    requires_occupancy: true
+    
+  electric_heater:
+    id: electric_heater
+    name: Space Heater
+    category: hvac
+    pattern: cycling
+    standby_power_w: 0
+    active_power_w: 1500
+    peak_power_w: 1500
+    cycle_on_min: 15
+    cycle_off_min: 15
+    time_preferences:
+      - [0, 24]
+    expected_uses_per_day: 0
+    seasonal_factor:
+      winter: 1.0
+      spring: 0.3
+      summer: 0.0  # OFF
+      fall: 0.5
+    weekday_factor: 0.7
+    requires_occupancy: true
+    
+  water_heater:
+    id: water_heater
+    name: Electric Water Heater
+    category: hvac
+    pattern: cycling
+    standby_power_w: 50
+    active_power_w: 4000
+    peak_power_w: 4500
+    cycle_on_min: 15
+    cycle_off_min: 400
+    time_preferences:
+      - [0, 24]
+    expected_uses_per_day: 0
+    seasonal_factor:
+      winter: 1.3
+      spring: 1.0
+      summer: 0.8
+      fall: 1.1
+    weekday_factor: 1.0
+    requires_occupancy: true
+    # Professor Layers
+    service_type: water_heating
+    shiftable: true
+    max_delay_min: 120 # Tank storage acts as a buffer
+    comfort_class: medium
+    
+  boiler:
+    id: boiler
+    name: Electric Boiler
+    category: hvac
+    pattern: cycling
+    standby_power_w: 30
+    active_power_w: 9000
+    peak_power_w: 12000
+    cycle_on_min: 15
+    cycle_off_min: 45
+    time_preferences:
+      - [0, 24]
+    expected_uses_per_day: 0
+    seasonal_factor:
+      winter: 1.0
+      spring: 0.4
+      summer: 0.1
+      fall: 0.6
+    weekday_factor: 1.0
+    requires_occupancy: true
+    
+  # ==================== MAJOR APPLIANCES ====================
+  
+  washing_machine:
+    id: washing_machine
+    name: Washing Machine
+    category: major_appliance
+    pattern: weekly
+    standby_power_w: 0
+    active_power_w: 500
+    peak_power_w: 2000
+    avg_duration_min: 60
+    time_preferences:
+      - [8, 12]
+      - [14, 18]
+    expected_uses_per_week: 4
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.0
+      summer: 1.1
+      fall: 1.0
+    weekday_factor: 0.6
+    requires_occupancy: true
+    # Professor Layers
+    service_type: electrical
+    shiftable: true
+    max_delay_min: 360 # Can delay significantly
+    comfort_class: low
+    requires_presence_to_start: true
+    can_start_unattended: false
+    
+  dryer:
+    id: dryer
+    name: Clothes Dryer
+    category: major_appliance
+    pattern: weekly
+    standby_power_w: 0
+    active_power_w: 3000
+    peak_power_w: 3400
+    avg_duration_min: 50
+    time_preferences:
+      - [9, 13]
+      - [15, 19]
+    expected_uses_per_week: 3
+    seasonal_factor:
+      winter: 1.3
+      spring: 1.0
+      summer: 0.7
+      fall: 1.1
+    weekday_factor: 0.6
+    requires_occupancy: true
+    # Professor Layers
+    service_type: electrical
+    shiftable: true
+    max_delay_min: 360
+    comfort_class: low
+    requires_presence_to_start: true
+    can_start_unattended: false
+    
+  dishwasher:
+    id: dishwasher
+    name: Dishwasher
+    category: major_appliance
+    pattern: daily
+    standby_power_w: 0
+    active_power_w: 1200
+    peak_power_w: 1800
+    avg_duration_min: 90
+    time_preferences:
+      - [20, 23]
+    expected_uses_per_day: 0.8
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.0
+      summer: 1.0
+      fall: 1.0
+    weekday_factor: 1.0
+    requires_occupancy: true
+    # Professor Layers
+    service_type: electrical
+    shiftable: true
+    max_delay_min: 720 # Can run overnight
+    comfort_class: low
+    requires_presence_to_start: true
+    can_start_unattended: true
+    
+  # ==================== COOKING APPLIANCES ====================
+  
+  electric_stove:
+    id: electric_stove
+    name: Electric Stove
+    category: cooking
+    pattern: daily
+    standby_power_w: 0
+    active_power_w: 2400
+    peak_power_w: 3000
+    avg_duration_min: 25
+    time_preferences:
+      - [7, 9]
+      - [12, 13]
+      - [17, 20]
+    expected_uses_per_day: 2.5
+    seasonal_factor:
+      winter: 1.1
+      spring: 1.0
+      summer: 0.9
+      fall: 1.0
+    weekday_factor: 1.0
+    requires_occupancy: true
+    
+  oven:
+    id: oven
+    name: Electric Oven
+    category: cooking
+    pattern: weekly
+    standby_power_w: 0
+    active_power_w: 2400
+    peak_power_w: 3600
+    avg_duration_min: 45
+    time_preferences:
+      - [17, 20]
+    expected_uses_per_week: 3
+    seasonal_factor:
+      winter: 1.2
+      spring: 1.0
+      summer: 0.8
+      fall: 1.0
+    weekday_factor: 0.5
+    requires_occupancy: true
+    
+  microwave:
+    id: microwave
+    name: Microwave
+    category: cooking
+    pattern: daily
+    standby_power_w: 0
+    active_power_w: 1200
+    peak_power_w: 1400
+    avg_duration_min: 5
+    time_preferences:
+      - [7, 9]
+      - [12, 14]
+      - [17, 21]
+    expected_uses_per_day: 3
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.0
+      summer: 1.1
+      fall: 1.0
+    weekday_factor: 1.1
+    requires_occupancy: true
+    
+  kettle:
+    id: kettle
+    name: Electric Kettle
+    category: cooking
+    pattern: daily
+    standby_power_w: 0
+    active_power_w: 2000
+    peak_power_w: 2200
+    avg_duration_min: 3
+    time_preferences:
+      - [6, 9]
+      - [14, 16]
+      - [19, 21]
+    expected_uses_per_day: 4
+    seasonal_factor:
+      winter: 1.3
+      spring: 1.0
+      summer: 0.8
+      fall: 1.1
+    weekday_factor: 1.2
+    requires_occupancy: true
+    
+  coffee_maker:
+    id: coffee_maker
+    name: Coffee Maker
+    category: cooking
+    pattern: daily
+    standby_power_w: 0
+    active_power_w: 1000
+    peak_power_w: 1200
+    avg_duration_min: 8
+    time_preferences:
+      - [6, 9]
+      - [13, 15]
+    expected_uses_per_day: 2
+    seasonal_factor:
+      winter: 1.1
+      spring: 1.0
+      summer: 0.9
+      fall: 1.0
+    weekday_factor: 1.3
+    requires_occupancy: true
+    
+  toaster:
+    id: toaster
+    name: Toaster
+    category: cooking
+    pattern: daily
+    standby_power_w: 0
+    active_power_w: 1200
+    peak_power_w: 1400
+    avg_duration_min: 3
+    time_preferences:
+      - [6, 9]
+    expected_uses_per_day: 1.5
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.0
+      summer: 1.0
+      fall: 1.0
+    weekday_factor: 1.2
+    requires_occupancy: true
+    
+  # ==================== CLEANING DEVICES ====================
+  
+  vacuum_cleaner:
+    id: vacuum_cleaner
+    name: Vacuum Cleaner
+    category: cleaning
+    pattern: weekly
+    standby_power_w: 0
+    active_power_w: 1200
+    peak_power_w: 1400
+    avg_duration_min: 25
+    time_preferences:
+      - [9, 12]
+      - [14, 17]
+    expected_uses_per_week: 2
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.1
+      summer: 1.0
+      fall: 1.0
+    weekday_factor: 0.4
+    requires_occupancy: true
+    requires_presence_to_start: true
+    can_start_unattended: false
+    
+  iron:
+    id: iron
+    name: Iron
+    category: cleaning
+    pattern: weekly
+    standby_power_w: 0
+    active_power_w: 1500
+    peak_power_w: 1800
+    avg_duration_min: 20
+    time_preferences:
+      - [9, 11]
+      - [19, 21]
+    expected_uses_per_week: 2
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.0
+      summer: 1.0
+      fall: 1.0
+    weekday_factor: 0.5
+    requires_occupancy: true
+    requires_presence_to_start: true
+    can_start_unattended: false
+    
+  # ==================== ENTERTAINMENT ====================
+  
+  tv_living_room:
+    id: tv_living_room
+    name: TV (Living Room)
+    category: entertainment
+    pattern: daily
+    standby_power_w: 2
+    active_power_w: 120
+    peak_power_w: 150
+    avg_duration_min: 210
+    time_preferences:
+      - [18, 23]
+    expected_uses_per_day: 1.2
+    seasonal_factor:
+      winter: 1.3
+      spring: 1.0
+      summer: 0.8
+      fall: 1.1
+    weekday_factor: 0.8
+    requires_occupancy: true
+    
+  tv_bedroom:
+    id: tv_bedroom
+    name: TV (Bedroom)
+    category: entertainment
+    pattern: daily
+    standby_power_w: 2
+    active_power_w: 80
+    peak_power_w: 100
+    avg_duration_min: 90
+    time_preferences:
+      - [21, 24]
+    expected_uses_per_day: 0.8
+    seasonal_factor:
+      winter: 1.2
+      spring: 1.0
+      summer: 0.9
+      fall: 1.0
+    weekday_factor: 1.0
+    requires_occupancy: true
+    
+  gaming_console:
+    id: gaming_console
+    name: Gaming Console (PlayStation/Xbox)
+    category: entertainment
+    pattern: daily
+    standby_power_w: 10
+    active_power_w: 150
+    peak_power_w: 180
+    avg_duration_min: 120
+    time_preferences:
+      - [15, 18]
+      - [19, 23]
+    expected_uses_per_day: 0.6
+    seasonal_factor:
+      winter: 1.3
+      spring: 1.0
+      summer: 0.9
+      fall: 1.1
+    weekday_factor: 0.7
+    requires_occupancy: true
+    
+  stereo_system:
+    id: stereo_system
+    name: Stereo System
+    category: entertainment
+    pattern: daily
+    standby_power_w: 5
+    active_power_w: 80
+    peak_power_w: 120
+    avg_duration_min: 90
+    time_preferences:
+      - [8, 10]
+      - [18, 22]
+    expected_uses_per_day: 0.7
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.0
+      summer: 1.1
+      fall: 1.0
+    weekday_factor: 0.8
+    requires_occupancy: true
+    
+  # ==================== OFFICE/COMPUTING ====================
+  
+  desktop_computer:
+    id: desktop_computer
+    name: Desktop Computer
+    category: office
+    pattern: daily
+    standby_power_w: 5
+    active_power_w: 200
+    peak_power_w: 300
+    avg_duration_min: 180
+    time_preferences:
+      - [8, 12]
+      - [19, 23]
+    expected_uses_per_day: 1.5
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.0
+      summer: 1.0
+      fall: 1.0
+    weekday_factor: 1.3
+    requires_occupancy: true
+    
+  laptop:
+    id: laptop
+    name: Laptop
+    category: office
+    pattern: daily
+    standby_power_w: 2
+    active_power_w: 60
+    peak_power_w: 90
+    avg_duration_min: 240
+    time_preferences:
+      - [8, 17]
+      - [19, 22]
+    expected_uses_per_day: 1.8
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.0
+      summer: 1.0
+      fall: 1.0
+    weekday_factor: 1.5
+    requires_occupancy: true
+    
+  printer:
+    id: printer
+    name: Printer
+    category: office
+    pattern: weekly
+    standby_power_w: 5
+    active_power_w: 300
+    peak_power_w: 400
+    avg_duration_min: 5
+    time_preferences:
+      - [9, 17]
+    expected_uses_per_week: 2
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.0
+      summer: 1.0
+      fall: 1.0
+    weekday_factor: 1.8
+    requires_occupancy: true
+    
+  # ==================== LIGHTING ====================
+  
+  light_living_room:
+    id: light_living_room
+    name: Living Room Lights
+    category: lighting
+    pattern: daily
+    standby_power_w: 0
+    active_power_w: 60
+    peak_power_w: 60
+    avg_duration_min: 240
+    time_preferences:
+      - [6, 9]
+      - [17, 23]
+    expected_uses_per_day: 2
+    seasonal_factor:
+      winter: 1.4
+      spring: 1.0
+      summer: 0.7
+      fall: 1.2
+    weekday_factor: 0.9
+    requires_occupancy: true
+    
+  light_kitchen:
+    id: light_kitchen
+    name: Kitchen Lights
+    category: lighting
+    pattern: daily
+    standby_power_w: 0
+    active_power_w: 40
+    peak_power_w: 40
+    avg_duration_min: 180
+    time_preferences:
+      - [6, 9]
+      - [17, 22]
+    expected_uses_per_day: 2.5
+    seasonal_factor:
+      winter: 1.4
+      spring: 1.0
+      summer: 0.7
+      fall: 1.2
+    weekday_factor: 1.0
+    requires_occupancy: true
+    
+  light_bedroom:
+    id: light_bedroom
+    name: Bedroom Lights
+    category: lighting
+    pattern: daily
+    standby_power_w: 0
+    active_power_w: 30
+    peak_power_w: 30
+    avg_duration_min: 90
+    time_preferences:
+      - [6, 8]
+      - [21, 24]
+    expected_uses_per_day: 2
+    seasonal_factor:
+      winter: 1.4
+      spring: 1.0
+      summer: 0.7
+      fall: 1.2
+    weekday_factor: 1.0
+    requires_occupancy: true
+    
+  light_bathroom:
+    id: light_bathroom
+    name: Bathroom Lights
+    category: lighting
+    pattern: daily
+    standby_power_w: 0
+    active_power_w: 25
+    peak_power_w: 25
+    avg_duration_min: 60
+    time_preferences:
+      - [6, 9]
+      - [21, 23]
+    expected_uses_per_day: 4
+    seasonal_factor:
+      winter: 1.3
+      spring: 1.0
+      summer: 0.8
+      fall: 1.1
+    weekday_factor: 1.0
+    requires_occupancy: true
+    
+  light_outdoor:
+    id: light_outdoor
+    name: Outdoor Lights
+    category: lighting
+    pattern: daily
+    standby_power_w: 0
+    active_power_w: 35
+    peak_power_w: 35
+    avg_duration_min: 480
+    time_preferences:
+      - [17, 7]  # Evening to morning (crosses midnight)
+    expected_uses_per_day: 1
+    seasonal_factor:
+      winter: 1.6
+      spring: 1.0
+      summer: 0.6
+      fall: 1.2
+    weekday_factor: 1.0
+    requires_occupancy: false
+    
+  # ==================== PERSONAL CARE ====================
+  
+  hair_dryer:
+    id: hair_dryer
+    name: Hair Dryer
+    category: personal_care
+    pattern: daily
+    standby_power_w: 0
+    active_power_w: 1800
+    peak_power_w: 2000
+    avg_duration_min: 8
+    time_preferences:
+      - [6, 9]
+      - [20, 22]
+    expected_uses_per_day: 1.2
+    seasonal_factor:
+      winter: 1.1
+      spring: 1.0
+      summer: 0.9
+      fall: 1.0
+    weekday_factor: 1.3
+    requires_occupancy: true
+    
+  electric_shaver:
+    id: electric_shaver
+    name: Electric Shaver
+    category: personal_care
+    pattern: daily
+    standby_power_w: 1
+    active_power_w: 15
+    peak_power_w: 20
+    avg_duration_min: 5
+    time_preferences:
+      - [6, 9]
+    expected_uses_per_day: 0.8
+    seasonal_factor:
+      winter: 1.0
+      spring: 1.0
+      summer: 1.0
+      fall: 1.0
+    weekday_factor: 1.4
+    requires_occupancy: true
+    
+  # ==================== EV CHARGING ====================
+  
+  ev_charger_level2:
+    id: ev_charger_level2
+    name: EV Charger (Level 2, 7.2kW)
+    category: ev_charging
+    pattern: daily
+    standby_power_w: 5
+    active_power_w: 7200
+    peak_power_w: 7400
+    avg_duration_min: 180
+    time_preferences:
+      - [22, 6]  # Overnight charging
+    expected_uses_per_day: 0.7
+    seasonal_factor:
+      winter: 1.2
+      spring: 1.0
+      summer: 0.9
+      fall: 1.0
+    weekday_factor: 1.3
+    requires_occupancy: false
+    # Professor Layers
+    service_type: ev_charging
+    shiftable: true
+    max_delay_min: 480 # Flexible overnight
+    comfort_class: medium

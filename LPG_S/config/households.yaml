@@ -1,0 +1,385 @@
+# Household Profile Configuration
+# Defines 5 distinct household types with occupancy patterns and device ownership
+
+households:
+  single_professional:
+    id: single_professional
+    name: Single Professional
+    occupants: 1
+    description: Working adult, 25-45 years old, away during work hours
+    has_ev: true
+    
+    devices:
+      refrigerator: 1
+      wifi_router: 1
+      security_system: 1
+      heat_pump: 1
+      water_heater: 1
+      electric_stove: 1
+      microwave: 1
+      kettle: 1
+      coffee_maker: 1
+      toaster: 1
+      washing_machine: 1
+      tv_living_room: 1
+      tv_bedroom: 1
+      laptop: 1
+      light_living_room: 1
+      light_kitchen: 1
+      light_bedroom: 1
+      light_bathroom: 1
+      hair_dryer: 1
+      ev_charger_level2: 1
+      
+    weekday_schedule:
+      - start_hour: 0
+        end_hour: 6
+        occupancy_prob: 0.9
+      - start_hour: 6
+        end_hour: 8
+        occupancy_prob: 0.95
+      - start_hour: 8
+        end_hour: 17
+        occupancy_prob: 0.1
+      - start_hour: 17
+        end_hour: 19
+        occupancy_prob: 0.9
+      - start_hour: 19
+        end_hour: 23
+        occupancy_prob: 0.95
+      - start_hour: 23
+        end_hour: 24
+        occupancy_prob: 0.9
+        
+    weekend_schedule:
+      - start_hour: 0
+        end_hour: 8
+        occupancy_prob: 0.9
+      - start_hour: 8
+        end_hour: 12
+        occupancy_prob: 0.8
+      - start_hour: 12
+        end_hour: 18
+        occupancy_prob: 0.6
+      - start_hour: 18
+        end_hour: 24
+        occupancy_prob: 0.9
+        
+    device_multipliers:
+      washing_machine: 0.5
+      dishwasher: 0.4
+      gaming_console: 0.3
+      
+  young_couple:
+    id: young_couple
+    name: Young Couple
+    occupants: 2
+    description: Two working adults, 25-40 years old, active lifestyle
+    has_ev: true
+    
+    devices:
+      refrigerator: 1
+      freezer: 1
+      wifi_router: 1
+      security_system: 1
+      heat_pump: 1
+      water_heater: 1
+      electric_stove: 1
+      oven: 1
+      microwave: 1
+      kettle: 1
+      coffee_maker: 1
+      toaster: 1
+      washing_machine: 1
+      dryer: 1
+      dishwasher: 1
+      tv_living_room: 1
+      tv_bedroom: 1
+      gaming_console: 1
+      stereo_system: 1
+      laptop: 2
+      light_living_room: 1
+      light_kitchen: 1
+      light_bedroom: 1
+      light_bathroom: 1
+      light_outdoor: 1
+      vacuum_cleaner: 1
+      iron: 1
+      hair_dryer: 1
+      electric_shaver: 1
+      ev_charger_level2: 1
+      
+    weekday_schedule:
+      - start_hour: 0
+        end_hour: 6
+        occupancy_prob: 0.95
+      - start_hour: 6
+        end_hour: 9
+        occupancy_prob: 0.9
+      - start_hour: 9
+        end_hour: 17
+        occupancy_prob: 0.15
+      - start_hour: 17
+        end_hour: 20
+        occupancy_prob: 0.9
+      - start_hour: 20
+        end_hour: 24
+        occupancy_prob: 0.95
+        
+    weekend_schedule:
+      - start_hour: 0
+        end_hour: 9
+        occupancy_prob: 0.9
+      - start_hour: 9
+        end_hour: 12
+        occupancy_prob: 0.85
+      - start_hour: 12
+        end_hour: 17
+        occupancy_prob: 0.5
+      - start_hour: 17
+        end_hour: 24
+        occupancy_prob: 0.9
+        
+    device_multipliers:
+      gaming_console: 1.2
+      stereo_system: 1.3
+      oven: 1.2
+      
+  family_with_children:
+    id: family_with_children
+    name: Family with Children
+    occupants: 4
+    description: 2 adults + 2-3 kids (ages 5-15), high activity level
+    has_ev: false
+    
+    devices:
+      refrigerator: 1
+      freezer: 1
+      wifi_router: 1
+      security_system: 1
+      heat_pump: 1
+      water_heater: 1
+      electric_stove: 1
+      oven: 1
+      microwave: 1
+      kettle: 1
+      coffee_maker: 1
+      toaster: 1
+      washing_machine: 1
+      dryer: 1
+      dishwasher: 1
+      tv_living_room: 1
+      tv_bedroom: 1
+      gaming_console: 1
+      stereo_system: 1
+      desktop_computer: 1
+      laptop: 2
+      printer: 1
+      light_living_room: 1
+      light_kitchen: 1
+      light_bedroom: 2
+      light_bathroom: 1
+      light_outdoor: 1
+      vacuum_cleaner: 1
+      iron: 1
+      hair_dryer: 1
+      electric_shaver: 1
+      
+    weekday_schedule:
+      - start_hour: 0
+        end_hour: 6
+        occupancy_prob: 0.95
+      - start_hour: 6
+        end_hour: 9
+        occupancy_prob: 0.98
+      - start_hour: 9
+        end_hour: 15
+        occupancy_prob: 0.3
+      - start_hour: 15
+        end_hour: 17
+        occupancy_prob: 0.8
+      - start_hour: 17
+        end_hour: 21
+        occupancy_prob: 0.98
+      - start_hour: 21
+        end_hour: 24
+        occupancy_prob: 0.9
+        
+    weekend_schedule:
+      - start_hour: 0
+        end_hour: 8
+        occupancy_prob: 0.95
+      - start_hour: 8
+        end_hour: 12
+        occupancy_prob: 0.9
+      - start_hour: 12
+        end_hour: 18
+        occupancy_prob: 0.6
+      - start_hour: 18
+        end_hour: 22
+        occupancy_prob: 0.95
+      - start_hour: 22
+        end_hour: 24
+        occupancy_prob: 0.9
+        
+    device_multipliers:
+      washing_machine: 1.8
+      dryer: 1.8
+      dishwasher: 1.5
+      microwave: 1.4
+      gaming_console: 1.8
+      light_bedroom: 1.5
+      water_heater: 1.4
+      
+  large_family:
+    id: large_family
+    name: Large Family
+    occupants: 6
+    description: 2 adults + 3-4 kids, very high energy usage
+    has_ev: false
+    
+    devices:
+      refrigerator: 1
+      freezer: 1
+      wifi_router: 1
+      security_system: 1
+      heat_pump: 1
+      water_heater: 1
+      electric_stove: 1
+      oven: 1
+      microwave: 1
+      kettle: 1
+      coffee_maker: 1
+      toaster: 1
+      washing_machine: 1
+      dryer: 1
+      dishwasher: 1
+      tv_living_room: 1
+      tv_bedroom: 2
+      gaming_console: 1
+      stereo_system: 1
+      desktop_computer: 1
+      laptop: 2
+      printer: 1
+      light_living_room: 1
+      light_kitchen: 1
+      light_bedroom: 3
+      light_bathroom: 2
+      light_outdoor: 1
+      vacuum_cleaner: 1
+      iron: 1
+      hair_dryer: 2
+      electric_shaver: 1
+      
+    weekday_schedule:
+      - start_hour: 0
+        end_hour: 6
+        occupancy_prob: 0.98
+      - start_hour: 6
+        end_hour: 9
+        occupancy_prob: 0.99
+      - start_hour: 9
+        end_hour: 15
+        occupancy_prob: 0.4
+      - start_hour: 15
+        end_hour: 17
+        occupancy_prob: 0.9
+      - start_hour: 17
+        end_hour: 22
+        occupancy_prob: 0.99
+      - start_hour: 22
+        end_hour: 24
+        occupancy_prob: 0.95
+        
+    weekend_schedule:
+      - start_hour: 0
+        end_hour: 8
+        occupancy_prob: 0.95
+      - start_hour: 8
+        end_hour: 22
+        occupancy_prob: 0.85
+      - start_hour: 22
+        end_hour: 24
+        occupancy_prob: 0.95
+        
+    device_multipliers:
+      washing_machine: 2.5
+      dryer: 2.5
+      dishwasher: 2.0
+      microwave: 1.8
+      electric_stove: 1.6
+      oven: 1.5
+      gaming_console: 2.0
+      water_heater: 1.8
+      
+  retired_couple:
+    id: retired_couple
+    name: Retired Couple
+    occupants: 2
+    description: Elderly couple, home most of the day, moderate usage
+    has_ev: false
+    
+    devices:
+      refrigerator: 1
+      freezer: 1
+      wifi_router: 1
+      security_system: 1
+      heat_pump: 1
+      water_heater: 1
+      electric_stove: 1
+      oven: 1
+      microwave: 1
+      kettle: 1
+      coffee_maker: 1
+      toaster: 1
+      washing_machine: 1
+      dryer: 1
+      dishwasher: 1
+      tv_living_room: 1
+      tv_bedroom: 1
+      stereo_system: 1
+      laptop: 1
+      light_living_room: 1
+      light_kitchen: 1
+      light_bedroom: 1
+      light_bathroom: 1
+      light_outdoor: 1
+      vacuum_cleaner: 1
+      iron: 1
+      hair_dryer: 1
+      electric_shaver: 1
+      
+    weekday_schedule:
+      - start_hour: 0
+        end_hour: 7
+        occupancy_prob: 0.95
+      - start_hour: 7
+        end_hour: 10
+        occupancy_prob: 0.95
+      - start_hour: 10
+        end_hour: 17
+        occupancy_prob: 0.85
+      - start_hour: 17
+        end_hour: 22
+        occupancy_prob: 0.95
+      - start_hour: 22
+        end_hour: 24
+        occupancy_prob: 0.9
+        
+    weekend_schedule:
+      - start_hour: 0
+        end_hour: 7
+        occupancy_prob: 0.95
+      - start_hour: 7
+        end_hour: 22
+        occupancy_prob: 0.9
+      - start_hour: 22
+        end_hour: 24
+        occupancy_prob: 0.9
+        
+    device_multipliers:
+      tv_living_room: 1.6
+      stereo_system: 1.4
+      heat_pump: 1.2
+      gaming_console: 0.0
+      laptop: 0.6

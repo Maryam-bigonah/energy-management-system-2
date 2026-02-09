@@ -1,0 +1,197 @@
+# Calibration Targets for Device Energy Consumption
+#
+# This file defines realistic energy consumption ranges for each device type.
+# Used by sanity_report.py to validate that generated profiles are physically plausible.
+#
+# Targets based on:
+# - US DOE appliance energy standards
+# - European energy labels
+# - IEEE residential energy studies
+# - Manufacturer specifications
+
+devices:
+  # ========== ALWAYS-ON / CONTINUOUS ====================
+  wifi_router:
+    avg_power_w_range: [5, 15]
+    annual_kwh_range: [44, 131]  # 5W * 8760h = 44 kWh; 15W = 131 kWh
+    
+  security_system:
+    avg_power_w_range: [5, 10]
+    annual_kwh_range: [44, 88]
+    
+  # ========== CYCLING DEVICES ===========================
+  refrigerator:
+    avg_power_w_range: [40, 100]  # Average over time, not peak
+    annual_kwh_range: [350, 876]  # Typical 400-800 kWh/year
+    duty_cycle_range: [0.25, 0.50]  # Compressor ON 25-50% of time
+    
+  freezer:
+    avg_power_w_range: [30, 80]
+    annual_kwh_range: [263, 701]  # Typical 300-650 kWh/year
+    duty_cycle_range: [0.25, 0.50]
+    
+  # ========== KITCHEN APPLIANCES ========================
+  microwave:
+    energy_per_use_kwh_range: [0.05, 0.15]  # 3-5 min @ 1000-1200W
+    uses_per_day_range: [0.5, 3]
+    max_daily_kwh: 0.5
+    
+  electric_kettle:
+    energy_per_use_kwh_range: [0.05, 0.10]  # 2-3 min @ 2000W
+    uses_per_day_range: [1, 6]
+    max_daily_kwh: 0.6
+    
+  toaster:
+    energy_per_use_kwh_range: [0.02, 0.06]  # 1-3 min @ 1000W
+    uses_per_day_range: [0.3, 2]
+    max_daily_kwh: 0.12
+    
+  coffee_maker:
+    energy_per_use_kwh_range: [0.08, 0.15]  # 5-10 min @ 1000W
+    uses_per_day_range: [0.5, 3]
+    max_daily_kwh: 0.45
+    
+  dishwasher:
+    energy_per_use_kwh_range: [0.8, 1.5]  # Typical cycle
+    uses_per_day_range: [0.3, 1.5]
+    max_daily_kwh: 2.25
+    
+  # ========== LAUNDRY ===================================
+  washing_machine:
+    energy_per_use_kwh_range: [0.5, 1.2]  # Hot water cycles use more
+    uses_per_day_range: [0.3, 1.5]
+    max_daily_kwh: 1.8
+    
+  dryer:
+    energy_per_use_kwh_range: [2.0, 4.0]  # High energy appliance
+    uses_per_day_range: [0.3, 1.5]
+    max_daily_kwh: 6.0
+    
+  # ========== LIGHTING ==================================
+  # Per bulb/fixture
+  light_bedroom:
+    avg_power_w_range: [5, 15]  # LED bulbs
+    daily_runtime_hours_range: [2, 6]
+    max_daily_kwh: 0.09  # 15W * 6h
+    
+  light_kitchen:
+    avg_power_w_range: [10, 30]
+    daily_runtime_hours_range: [3, 8]
+    max_daily_kwh: 0.24
+    
+  light_bathroom:
+    avg_power_w_range: [5, 15]
+    daily_runtime_hours_range: [1, 3]
+    max_daily_kwh: 0.045
+    
+  light_living_room:
+    avg_power_w_range: [15, 50]
+    daily_runtime_hours_range: [4, 10]
+    max_daily_kwh: 0.5
+    
+  outdoor_lights:
+    avg_power_w_range: [5, 20]  # LED floodlights
+    daily_runtime_hours_range: [10, 14]  # Dusk to dawn
+    max_daily_kwh: 0.28
+    
+  # ========== ENTERTAINMENT =============================
+  tv_living_room:
+    avg_power_w_range: [50, 150]  # Modern LED TVs
+    daily_runtime_hours_range: [2, 8]
+    max_daily_kwh: 1.2
+    
+  tv_bedroom:
+    avg_power_w_range: [30, 100]
+    daily_runtime_hours_range: [1, 4]
+    max_daily_kwh: 0.4
+    
+  laptop:
+    avg_power_w_range: [20, 50]
+    daily_runtime_hours_range: [2, 12]
+    max_daily_kwh: 0.6
+    
+  desktop_computer:
+    avg_power_w_range: [100, 250]
+    daily_runtime_hours_range: [2, 12]
+    max_daily_kwh: 3.0
+    
+  gaming_console:
+    avg_power_w_range: [50, 150]
+    daily_runtime_hours_range: [1, 6]
+    max_daily_kwh: 0.9
+    
+  # ========== HVAC & WATER HEATING ======================
+  # These are the BIGGEST loads - must be realistic
+  
+  heat_pump:
+    # Winter daily energy
+    winter_daily_kwh_range: [15, 60]  # Depends on house size, climate
+    # Summer daily energy (cooling mode)
+    summer_daily_kwh_range: [10, 40]
+    # Spring/fall (minimal use)
+    spring_fall_daily_kwh_range: [2, 15]
+    max_daily_kwh: 60
+    
+  central_ac:
+    summer_daily_kwh_range: [10, 50]
+    spring_fall_daily_kwh_range: [0, 10]
+    winter_daily_kwh_range: [0, 0]  # OFF in winter
+    max_daily_kwh: 50
+    
+  boiler:
+    winter_daily_kwh_range: [20, 80]  # Space heating
+    summer_daily_kwh_range: [0, 5]
+    max_daily_kwh: 80
+    
+  electric_heater:
+    winter_daily_kwh_range: [5, 25]  # Supplemental heating
+    summer_daily_kwh_range: [0, 0]  # OFF in summer
+    max_daily_kwh: 25
+    
+  water_heater:
+    daily_kwh_range: [3, 12]  # Typical tank heater
+    max_daily_kwh: 12
+    
+  # ========== EV CHARGING ==============================
+  ev_charger_level2:
+    energy_per_charge_kwh_range: [10, 50]  # Typical daily charge
+    uses_per_day_range: [0.5, 1]  # Not always charged daily
+    max_daily_kwh: 50
+    
+  # ========== OTHER ====================================
+  electric_stove:
+    energy_per_use_kwh_range: [0.5, 2.0]
+    uses_per_day_range: [0.5, 3]
+    max_daily_kwh: 6.0
+    
+  oven:
+    energy_per_use_kwh_range: [1.5, 3.0]  # Full hour of baking
+    uses_per_day_range: [0.1, 0.7]
+    max_daily_kwh: 2.1
+    
+  vacuum_cleaner:
+    energy_per_use_kwh_range: [0.2, 0.5]  # 15-30 min
+    uses_per_week_range: [1, 5]
+    max_daily_kwh: 0.5
+
+# ========== HOUSEHOLD TOTALS ==========================
+household_totals:
+  single_professional:
+    daily_kwh_range: [15, 45]
+    annual_kwh_range: [5500, 16400]
+    
+  young_couple:
+    daily_kwh_range: [20, 55]
+    annual_kwh_range: [7300, 20000]
+    
+  family_with_children:
+    daily_kwh_range: [25, 65]
+    annual_kwh_range: [9100, 23700]
+    
+  large_family:
+    daily_kwh_range: [30, 75]
+    annual_kwh_range: [11000, 27400]
+    
+  retired_couple:
+    daily_kwh_range: [22, 60]
+    annual_kwh_range: [8000, 21900]

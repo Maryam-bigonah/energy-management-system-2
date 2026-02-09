@@ -1,0 +1,284 @@
+# Behavior Profiles for Task-Based Devices
+# Defines weekly quotas, preferred days, and time windows for each household type.
+# Used by the QuotaScheduler to generate realistic activity patterns.
+
+behavior_profiles:
+  single_professional:
+    adults: 1
+    children: 0
+    working_adults: 1
+    # Occupancy thresholds for starting tasks
+    min_occupancy_to_start_weekday: 0.6
+    min_occupancy_to_start_weekend: 0.4
+    
+    weekly_device_usage:
+      washing_machine:
+        mean_uses_per_week: 2.0
+        std_uses_per_week: 0.5
+        max_uses_per_day: 2
+        preferred_days: {mon: 0.05, tue: 0.05, wed: 0.05, thu: 0.05, fri: 0.1, sat: 0.4, sun: 0.3}
+        start_time_windows: [[18, 22], [9, 11]] 
+        start_time_windows_weekday: [[18, 22]]
+        start_time_windows_weekend: [[9, 22]]
+      dryer:
+        mean_uses_per_week: 1.5
+        std_uses_per_week: 0.5
+        max_uses_per_day: 2
+        preferred_days: {mon: 0.05, tue: 0.05, wed: 0.05, thu: 0.05, fri: 0.1, sat: 0.4, sun: 0.3}
+        start_time_windows: [[19, 23], [10, 12]]
+        start_time_windows_weekday: [[19, 23]]
+        start_time_windows_weekend: [[10, 23]]
+        linked_to: washing_machine
+        link_window_hours: 4
+      dishwasher:
+        mean_uses_per_week: 3.5
+        std_uses_per_week: 1.0
+        max_uses_per_day: 1
+        preferred_days: {mon: 0.15, tue: 0.1, wed: 0.15, thu: 0.1, fri: 0.1, sat: 0.2, sun: 0.2}
+        start_time_windows: [[20, 23]]
+        start_time_windows_weekday: [[20, 23]]
+        start_time_windows_weekend: [[12, 14], [20, 23]]
+      vacuum_cleaner:
+        mean_uses_per_week: 1.0
+        std_uses_per_week: 0.2
+        max_uses_per_day: 1
+        preferred_days: {mon: 0.0, tue: 0.0, wed: 0.0, thu: 0.0, fri: 0.0, sat: 0.6, sun: 0.4}
+        start_time_windows: [[10, 16]]
+        start_time_windows_weekday: [[18, 20]] # Rare weekday usage
+        start_time_windows_weekend: [[10, 16]]
+      electric_stove:
+        mean_uses_per_week: 5.0
+        std_uses_per_week: 2.0
+        max_uses_per_day: 2
+        preferred_days: {mon: 0.15, tue: 0.15, wed: 0.15, thu: 0.15, fri: 0.1, sat: 0.15, sun: 0.15}
+        start_time_windows: [[18, 20]]
+        start_time_windows_weekday: [[18, 20]]
+        start_time_windows_weekend: [[11, 13], [18, 20]]
+      oven:
+        mean_uses_per_week: 2.0
+        std_uses_per_week: 1.0
+        max_uses_per_day: 1
+        preferred_days: {mon: 0.1, tue: 0.1, wed: 0.1, thu: 0.1, fri: 0.2, sat: 0.2, sun: 0.2}
+        start_time_windows: [[18, 20]]
+      ev_charger_level2:
+        mean_uses_per_week: 3.0
+        std_uses_per_week: 1.0
+        max_uses_per_day: 1
+        preferred_days: {mon: 0.15, tue: 0.15, wed: 0.15, thu: 0.15, fri: 0.1, sat: 0.15, sun: 0.15}
+        start_time_windows: [[19, 23], [0, 6]]
+
+  young_couple:
+    adults: 2
+    children: 0
+    working_adults: 2
+    # Both working: strict weekday rules
+    min_occupancy_to_start_weekday: 0.6
+    min_occupancy_to_start_weekend: 0.4
+    
+    weekly_device_usage:
+      washing_machine:
+        mean_uses_per_week: 3.5
+        std_uses_per_week: 1.0
+        max_uses_per_day: 3
+        preferred_days: {mon: 0.05, tue: 0.05, wed: 0.05, thu: 0.05, fri: 0.1, sat: 0.45, sun: 0.25}
+        start_time_windows: [[18, 22], [9, 14]]
+        start_time_windows_weekday: [[18, 22]]
+        start_time_windows_weekend: [[9, 16], [18, 22]]
+      dryer:
+        mean_uses_per_week: 3.0
+        std_uses_per_week: 1.0
+        max_uses_per_day: 3
+        preferred_days: {mon: 0.05, tue: 0.05, wed: 0.05, thu: 0.05, fri: 0.1, sat: 0.45, sun: 0.25}
+        start_time_windows: [[19, 23], [10, 15]]
+        start_time_windows_weekday: [[19, 23]]
+        start_time_windows_weekend: [[10, 23]]
+        linked_to: washing_machine
+        link_window_hours: 4
+      dishwasher:
+        mean_uses_per_week: 5.0
+        std_uses_per_week: 1.5
+        max_uses_per_day: 2
+        preferred_days: {mon: 0.15, tue: 0.15, wed: 0.15, thu: 0.15, fri: 0.1, sat: 0.15, sun: 0.15}
+        start_time_windows: [[20, 23]]
+        start_time_windows_weekday: [[20, 23]]
+        start_time_windows_weekend: [[12, 14], [20, 23]]
+      vacuum_cleaner:
+        mean_uses_per_week: 1.5
+        std_uses_per_week: 0.5
+        max_uses_per_day: 1
+        preferred_days: {mon: 0.0, tue: 0.0, wed: 0.0, thu: 0.0, fri: 0.1, sat: 0.5, sun: 0.4}
+        start_time_windows: [[10, 16]]
+        start_time_windows_weekday: [[18, 20]]
+        start_time_windows_weekend: [[10, 16]]
+      electric_stove:
+        mean_uses_per_week: 9.0
+        std_uses_per_week: 2.0
+        max_uses_per_day: 2
+        preferred_days: {mon: 0.15, tue: 0.15, wed: 0.15, thu: 0.15, fri: 0.1, sat: 0.15, sun: 0.15}
+        start_time_windows: [[18, 20]]
+        start_time_windows_weekday: [[18, 20]]
+        start_time_windows_weekend: [[10, 13], [18, 20]]
+      oven:
+        mean_uses_per_week: 3.0
+        std_uses_per_week: 1.0
+        max_uses_per_day: 1
+        preferred_days: {mon: 0.1, tue: 0.1, wed: 0.1, thu: 0.1, fri: 0.2, sat: 0.2, sun: 0.2}
+        start_time_windows: [[18, 20]]
+      ev_charger_level2:
+        mean_uses_per_week: 4.0
+        std_uses_per_week: 1.0
+        max_uses_per_day: 2
+        preferred_days: {mon: 0.15, tue: 0.15, wed: 0.15, thu: 0.15, fri: 0.1, sat: 0.15, sun: 0.15}
+        start_time_windows: [[19, 23], [0, 6]]
+
+  family_with_children:
+    adults: 2
+    children: 2
+    working_adults: 1
+    # One adult likely has flexibility, but school runs etc.
+    min_occupancy_to_start_weekday: 0.4 # More lenient as one adult might be home
+    min_occupancy_to_start_weekend: 0.4
+    
+    weekly_device_usage:
+      washing_machine:
+        mean_uses_per_week: 6.0
+        std_uses_per_week: 1.5
+        max_uses_per_day: 3
+        preferred_days: {mon: 0.15, tue: 0.15, wed: 0.15, thu: 0.15, fri: 0.1, sat: 0.2, sun: 0.1}
+        start_time_windows: [[8, 12], [14, 18], [19, 21]]
+        start_time_windows_weekday: [[16, 21]] # After work/school
+        start_time_windows_weekend: [[9, 21]]
+      dryer:
+        mean_uses_per_week: 5.0
+        std_uses_per_week: 1.5
+        max_uses_per_day: 3
+        preferred_days: {mon: 0.15, tue: 0.15, wed: 0.15, thu: 0.15, fri: 0.1, sat: 0.2, sun: 0.1}
+        start_time_windows: [[9, 13], [15, 19], [20, 22]]
+        linked_to: washing_machine
+        link_window_hours: 4
+      dishwasher:
+        mean_uses_per_week: 7.0 
+        std_uses_per_week: 1.0
+        max_uses_per_day: 2
+        preferred_days: {mon: 0.14, tue: 0.14, wed: 0.14, thu: 0.14, fri: 0.14, sat: 0.15, sun: 0.15}
+        start_time_windows: [[12, 14], [20, 23]]
+        start_time_windows_weekday: [[20, 23]]
+        start_time_windows_weekend: [[12, 14], [20, 23]]
+      vacuum_cleaner:
+        mean_uses_per_week: 3.0
+        std_uses_per_week: 1.0
+        max_uses_per_day: 2
+        preferred_days: {mon: 0.15, tue: 0.15, wed: 0.15, thu: 0.15, fri: 0.1, sat: 0.2, sun: 0.1}
+        start_time_windows: [[9, 16]]
+        start_time_windows_weekday: [[16, 18]]
+        start_time_windows_weekend: [[10, 16]]
+      electric_stove:
+        mean_uses_per_week: 12.0
+        std_uses_per_week: 3.0
+        max_uses_per_day: 3
+        preferred_days: {mon: 0.14, tue: 0.14, wed: 0.14, thu: 0.14, fri: 0.14, sat: 0.15, sun: 0.15}
+        start_time_windows: [[7, 8], [12, 13], [17, 19]]
+        start_time_windows_weekday: [[6, 8], [17, 20]]
+        start_time_windows_weekend: [[8, 10], [12, 14], [17, 20]]
+      oven:
+        mean_uses_per_week: 4.0
+        std_uses_per_week: 1.5
+        max_uses_per_day: 1
+        preferred_days: {mon: 0.1, tue: 0.1, wed: 0.1, thu: 0.1, fri: 0.2, sat: 0.2, sun: 0.2}
+        start_time_windows: [[17, 19]]
+
+  large_family:
+    adults: 2
+    children: 4
+    working_adults: 1
+    min_occupancy_to_start_weekday: 0.4
+    min_occupancy_to_start_weekend: 0.4
+    
+    weekly_device_usage:
+      washing_machine:
+        mean_uses_per_week: 9.0
+        std_uses_per_week: 2.0
+        max_uses_per_day: 4
+        preferred_days: {mon: 0.15, tue: 0.15, wed: 0.15, thu: 0.15, fri: 0.15, sat: 0.15, sun: 0.1}
+        start_time_windows: [[8, 20]]
+        start_time_windows_weekday: [[16, 22]]
+        start_time_windows_weekend: [[8, 22]]
+      dryer:
+        mean_uses_per_week: 8.0
+        std_uses_per_week: 2.0
+        max_uses_per_day: 4
+        preferred_days: {mon: 0.15, tue: 0.15, wed: 0.15, thu: 0.15, fri: 0.15, sat: 0.15, sun: 0.1}
+        start_time_windows: [[9, 22]]
+        linked_to: washing_machine
+        link_window_hours: 4
+      dishwasher:
+        mean_uses_per_week: 10.0
+        std_uses_per_week: 2.0
+        max_uses_per_day: 3
+        preferred_days: {mon: 0.14, tue: 0.14, wed: 0.14, thu: 0.14, fri: 0.14, sat: 0.15, sun: 0.15}
+        start_time_windows: [[8, 10], [13, 15], [20, 23]]
+      vacuum_cleaner:
+        mean_uses_per_week: 4.0
+        std_uses_per_week: 1.0
+        max_uses_per_day: 2
+        preferred_days: {mon: 0.2, tue: 0.2, wed: 0.1, thu: 0.1, fri: 0.1, sat: 0.2, sun: 0.1}
+        start_time_windows: [[9, 17]]
+        start_time_windows_weekday: [[16, 20]]
+        start_time_windows_weekend: [[9, 17]]
+      electric_stove:
+        mean_uses_per_week: 14.0
+        std_uses_per_week: 3.0
+        max_uses_per_day: 3
+        preferred_days: {mon: 0.14, tue: 0.14, wed: 0.14, thu: 0.14, fri: 0.14, sat: 0.15, sun: 0.15}
+        start_time_windows: [[6, 8], [12, 14], [17, 20]]
+      oven:
+        mean_uses_per_week: 5.0
+        std_uses_per_week: 2.0
+        max_uses_per_day: 2
+        preferred_days: {mon: 0.1, tue: 0.1, wed: 0.1, thu: 0.1, fri: 0.2, sat: 0.2, sun: 0.2}
+        start_time_windows: [[17, 20]]
+
+  retired_couple:
+    adults: 2
+    children: 0
+    working_adults: 0
+    # Always home mostly
+    min_occupancy_to_start_weekday: 0.8
+    min_occupancy_to_start_weekend: 0.8
+    
+    weekly_device_usage:
+      washing_machine:
+        mean_uses_per_week: 3.0
+        std_uses_per_week: 1.0
+        max_uses_per_day: 2
+        preferred_days: {mon: 0.15, tue: 0.2, wed: 0.2, thu: 0.15, fri: 0.15, sat: 0.1, sun: 0.05} 
+        start_time_windows: [[9, 12], [13, 16]]
+        # Retired people do things on weekdays mostly
+        start_time_windows_weekday: [[9, 16]]
+        start_time_windows_weekend: [[9, 12]]
+      dryer:
+        mean_uses_per_week: 2.5
+        std_uses_per_week: 1.0
+        max_uses_per_day: 2
+        preferred_days: {mon: 0.15, tue: 0.2, wed: 0.2, thu: 0.15, fri: 0.15, sat: 0.1, sun: 0.05}
+        start_time_windows: [[10, 13], [14, 18]]
+        linked_to: washing_machine
+        link_window_hours: 4
+      dishwasher:
+        mean_uses_per_week: 3.5
+        std_uses_per_week: 1.0
+        max_uses_per_day: 1
+        preferred_days: {mon: 0.15, tue: 0.15, wed: 0.15, thu: 0.15, fri: 0.15, sat: 0.15, sun: 0.1}
+        start_time_windows: [[12, 14], [19, 21]]
+      vacuum_cleaner:
+        mean_uses_per_week: 2.0
+        std_uses_per_week: 0.5
+        max_uses_per_day: 1
+        preferred_days: {mon: 0.2, tue: 0.2, wed: 0.2, thu: 0.2, fri: 0.2, sat: 0.0, sun: 0.0}
+        start_time_windows: [[9, 12]]
+      electric_stove:
+        mean_uses_per_week: 10.0
+        std_uses_per_week: 2.0
+        max_uses_per_day: 3
+        preferred_days: {mon: 0.14, tue: 0.14, wed: 0.14, thu: 0.14, fri: 0.14, sat: 0.15, sun: 0.15}
+        start_time_windows: [[8, 9], [12, 13], [17, 19]]

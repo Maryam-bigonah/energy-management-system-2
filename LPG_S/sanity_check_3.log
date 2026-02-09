@@ -1,0 +1,37 @@
+
+======================================================================
+SANITY REPORT - Device Calibration Validation
+======================================================================
+
+Generating test profiles and checking against calibration targets...
+
+======================================================================
+Analyzing: single_professional - winter
+======================================================================
+
+Loading configuration from config/
+Traceback (most recent call last):
+  File "/Users/david/Desktop/load/synthetic_load_generator/sanity_report.py", line 296, in <module>
+    main()
+    ~~~~^^
+  File "/Users/david/Desktop/load/synthetic_load_generator/sanity_report.py", line 261, in main
+    results = generate_sanity_report(household, season)
+  File "/Users/david/Desktop/load/synthetic_load_generator/sanity_report.py", line 173, in generate_sanity_report
+    df = generate_household_profile(
+        household_id, start, end,
+    ...<2 lines>...
+        random_seed=seed
+    )
+  File "/Users/david/Desktop/load/synthetic_load_generator/generator.py", line 421, in generate_household_profile
+    devices, households = load_config(config_dir)
+                          ~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/david/Desktop/load/synthetic_load_generator/config_loader.py", line 380, in load_config
+    return loader.load_all()
+           ~~~~~~~~~~~~~~~^^
+  File "/Users/david/Desktop/load/synthetic_load_generator/config_loader.py", line 359, in load_all
+    self.load_devices()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/Users/david/Desktop/load/synthetic_load_generator/config_loader.py", line 300, in load_devices
+    avg_duration_min=device_data['avg_duration_min'],
+                     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'avg_duration_min'
