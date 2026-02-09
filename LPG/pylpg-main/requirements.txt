@@ -1,0 +1,5 @@
+setuptools
+requests
+dataclasses_json
+pandas
+numpy
