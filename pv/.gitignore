@@ -22,7 +22,6 @@ build/
 Thumbs.db
 
 # Data files (large CSVs - keep in .gitignore, document separately)
-*.csv
 
 # Model files
 *.pkl
@@ -33,6 +32,5 @@ Thumbs.db
 *.log
 
 # Plots
-*.png
 *.jpg
 *.pdf
