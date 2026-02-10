@@ -1,0 +1,4 @@
+Service,Total Events,Mean Duration (min),Median Duration (min),Total Electricity (kWh),Total Cold Water (L)
+Dishwashing Service,1,20753.0,20753.0,158.3762,2691
+Laundry Service,1,17739.0,17739.0,105.7465,7165
+Non-Shiftable Baseline,-,-,-,2354743.8337621936,-

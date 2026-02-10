@@ -10,6 +10,7 @@ behavior_profiles:
     # Occupancy thresholds for starting tasks
     min_occupancy_to_start_weekday: 0.6
     min_occupancy_to_start_weekend: 0.4
+    treat_holidays_as_weekend: true
     
     weekly_device_usage:
       washing_machine:
@@ -74,6 +75,7 @@ behavior_profiles:
     # Both working: strict weekday rules
     min_occupancy_to_start_weekday: 0.6
     min_occupancy_to_start_weekend: 0.4
+    treat_holidays_as_weekend: true
     
     weekly_device_usage:
       washing_machine:
@@ -138,6 +140,7 @@ behavior_profiles:
     # One adult likely has flexibility, but school runs etc.
     min_occupancy_to_start_weekday: 0.4 # More lenient as one adult might be home
     min_occupancy_to_start_weekend: 0.4
+    treat_holidays_as_weekend: true
     
     weekly_device_usage:
       washing_machine:
@@ -193,6 +196,7 @@ behavior_profiles:
     working_adults: 1
     min_occupancy_to_start_weekday: 0.4
     min_occupancy_to_start_weekend: 0.4
+    treat_holidays_as_weekend: true
     
     weekly_device_usage:
       washing_machine:
@@ -245,6 +249,7 @@ behavior_profiles:
     # Always home mostly
     min_occupancy_to_start_weekday: 0.8
     min_occupancy_to_start_weekend: 0.8
+    treat_holidays_as_weekend: true
     
     weekly_device_usage:
       washing_machine:

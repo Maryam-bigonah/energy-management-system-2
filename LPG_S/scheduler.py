@@ -243,6 +243,7 @@ class QuotaScheduler:
                         self.household.weekend_schedule
                     )
                     if prob < threshold:
+                        logger.debug(f"Rejected slot for {dev_meta.id} at {start_dt} (occupancy={prob:.2f} < threshold={threshold:.2f})")
                         continue # Resample
                 
                 # Valid slot found

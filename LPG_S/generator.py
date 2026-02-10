@@ -368,25 +368,31 @@ class LoadProfileGenerator:
                         'comfort_class': getattr(device_config, 'comfort_class', 'none')
                     })
                 
-                # Check legacy probabilistic logic ONLY if:
-                # 1. Not currently on
-                # 2. Not triggered by schedule
-                # 3. Device is NOT covered by scheduler (i.e. no schedule exists for this entire Sim) OR explicitly not a task device
-                # For safety, if we have a scheduler profile active for this household, 
-                # we assume ALL task devices are covered. 
-                # If a device is missing from behavior_profiles.yaml, it won't be scheduled.
-                # Do we fallback? Yes, for robustness.
-                elif not device_inst.is_on and not self.scheduled_events and device_config.pattern != 'standby':
-                     # Legacy fallback if no behavior profile found at all
-                     multiplier = self.household.device_multipliers.get(device_id, 1.0)
-                     should_legacy_trigger = should_device_turn_on(
-                        device_config,
-                        current_time,
-                        occupancy_prob,
-                        multiplier,
-                        self.interval_minutes,
-                        self.random_state
-                    )
+                # Determine if this device is a task device covered by behavior profiles
+                # Task devices include: washing_machine, dryer, dishwasher, vacuum_cleaner, iron, 
+                # electric_stove, oven, ev_charger_level2 (anything in behavior_profiles.yaml)
+                is_task_device = device_config.pattern in ['daily', 'weekly']
+                has_scheduler = len(self.scheduled_events) > 0  # Behavior profile was loaded
+                
+                # Check legacy probabilistic logic ONLY for non-task devices
+                # Examples: entertainment devices (TV, gaming), lighting, office equipment
+                # These don't have quotas/schedules and use probabilistic activation
+                should_legacy_trigger = False
+                
+                if not device_inst.is_on and device_config.pattern not in ['standby', 'cycling', 'continuous']:
+                    # Only use legacy logic if:
+                    # 1. Device is NOT a scheduled task device (no behavior profile), OR
+                    # 2. No scheduler exists at all for this household
+                    if not has_scheduler or not is_task_device:
+                        multiplier = self.household.device_multipliers.get(device_id, 1.0)
+                        should_legacy_trigger = should_device_turn_on(
+                            device_config,
+                            current_time,
+                            occupancy_prob,
+                            multiplier,
+                            self.interval_minutes,
+                            self.random_state
+                        )
                 
                 if should_legacy_trigger:
                     duration = get_device_duration(device_config, self.random_state)

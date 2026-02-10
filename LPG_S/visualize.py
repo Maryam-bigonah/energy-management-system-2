@@ -14,13 +14,14 @@ from pathlib import Path
 import argparse
 
 
-def plot_household_profile(csv_file: str, output_dir: str = "plots"):
+def plot_household_profile(csv_file: str, output_dir: str = "plots", show_plots: bool = False):
     """
     Create visualization plots for a household profile
     
     Args:
         csv_file: Path to CSV file
         output_dir: Directory to save plots
+        show_plots: If True, display plots interactively (in addition to saving)
     """
     # Load data
     df = pd.read_csv(csv_file, parse_dates=['timestamp'], index_col='timestamp')
@@ -40,10 +41,13 @@ def plot_household_profile(csv_file: str, output_dir: str = "plots"):
     ax.set_xlabel('Date/Time')
     ax.set_ylabel('Power (kW)')
     ax.grid(True, alpha=0.3)
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d\n%H:%M'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d\\n%H:%M'))
     plt.tight_layout()
     plt.savefig(f"{output_dir}/{Path(csv_file).stem}_week.png", dpi=150)
-    plt.close()
+    if show_plots:
+        plt.show()
+    else:
+        plt.close()
     
     # 2. Average daily profile (weekday vs weekend)
     df['hour'] = df.index.hour + df.index.minute / 60
@@ -63,7 +67,10 @@ def plot_household_profile(csv_file: str, output_dir: str = "plots"):
     ax.set_xlim(0, 24)
     plt.tight_layout()
     plt.savefig(f"{output_dir}/{Path(csv_file).stem}_daily.png", dpi=150)
-    plt.close()
+    if show_plots:
+        plt.show()
+    else:
+        plt.close()
     
     # 3. Monthly consumption
     # Detect interval from timestamp differences
@@ -87,13 +94,19 @@ def plot_household_profile(csv_file: str, output_dir: str = "plots"):
     ax.grid(True, alpha=0.3, axis='y')
     plt.tight_layout()
     plt.savefig(f"{output_dir}/{Path(csv_file).stem}_monthly.png", dpi=150)
-    plt.close()
+    if show_plots:
+        plt.show()
+    else:
+        plt.close()
     
     print(f"Created plots for {household_name}")
     print(f"  - One week profile")
     print(f"  - Average daily profile")
     print(f"  - Monthly consumption")
-    print(f"Saved to: {output_dir}/\n")
+    if show_plots:
+        print(f"  Displayed interactively and saved to: {output_dir}/\\n")
+    else:
+        print(f"  Saved to: {output_dir}/\\n")
 
 
 def main():
@@ -101,21 +114,26 @@ def main():
     parser.add_argument('csv_file', nargs='?', help='CSV file to plot')
     parser.add_argument('--all', action='store_true', help='Plot all profiles in output/')
     parser.add_argument('--output', type=str, default='plots', help='Output directory for plots')
+    parser.add_argument('--show', action='store_true', help='Display plots interactively (in addition to saving)')
     
     args = parser.parse_args()
     
     if args.all:
         csv_files = list(Path('output').glob('*_load_profile.csv'))
-        print(f"Found {len(csv_files)} profiles to plot\n")
+        print(f"Found {len(csv_files)} profiles to plot\\n")
         for csv_file in csv_files:
-            plot_household_profile(str(csv_file), args.output)
+            plot_household_profile(str(csv_file), args.output, args.show)
     elif args.csv_file:
-        plot_household_profile(args.csv_file, args.output)
+        plot_household_profile(args.csv_file, args.output, args.show)
     else:
         parser.error("Must specify csv_file or --all")
     
-    print(f"All plots saved to: {args.output}/")
+    if args.show:
+        print(f"\\nAll plots displayed interactively and saved to: {args.output}/")
+    else:
+        print(f"\\nAll plots saved to: {args.output}/")
 
 
 if __name__ == '__main__':
     main()
+

@@ -1,0 +1,11 @@
+ServiceName,DeviceColumnName(s),EnergyCarrier(s),ShiftabilityClass,WhatIsFixed,WhatIsDecision,Constraints,Notes
+Lighting,Various lighting devices,Electricity,Non-shiftable,"User occupancy pattern, lux requirements",None (baseline),"User-driven, immediate need","Follows occupancy pattern, cannot be shifted"
+Cooking,"Cooker, Oven, Microwave, etc.",Electricity,Non-shiftable,"Meal time preferences, cooking duration",None (baseline),User-driven at meal times,"Tied to meal schedule, cannot defer cooking"
+Entertainment,"TV, Audio, Set-top box",Electricity,Non-shiftable,User viewing/listening preferences,None (baseline),"User-driven, real-time service","Follows user leisure time, immediate consumption"
+ICT (Information & Communication),"Router, Computer, Phone charger",Electricity,Non-shiftable,"Always-on connectivity, user device usage",None (baseline),Continuous or user-driven,"Router always-on, devices used as needed"
+Cold Storage (Refrigeration),"Refrigerator, Freezer",Electricity,Non-shiftable,"Temperature setpoint, thermal inertia","None (baseline, thermostat-controlled)",Must maintain food safety temperature,"Continuous cooling, temperature-controlled"
+"Hygiene Water (Sink, Shower)","Sink taps, Shower","ColdWater, WarmWater, HotWater",Non-shiftable,"User hygiene schedule, comfort preferences",None (baseline),"User-driven, immediate need",Personal hygiene cannot be deferred
+Sanitation Water (Toilet),Toilet flush,ColdWater,Non-shiftable,User biological needs,None (baseline),"User-driven, immediate need","Biological necessity, cannot be shifted"
+Mobility Fuel,Car refueling,Gasoline,Non-shiftable,User travel schedule,None (baseline for gas vehicles),Refueling as needed for travel,"Gasoline car, travel schedule driven"
+Dishwashing Service,Dishwasher,"Electricity, ColdWater",Hard-shiftable,"Cycle energy profile, water consumption, duration once started",Start time (within acceptable window),"Must complete within 24h, user may prefer daytime completion","Discrete task with fixed profile, only start time is flexible"
+Laundry Service,Washing Machine,"Electricity, ColdWater",Hard-shiftable,"Cycle energy profile, water consumption, duration once started",Start time (within acceptable window),"Must complete within 24h, clothes should not sit wet too long","Discrete task with fixed profile, only start time is flexible"

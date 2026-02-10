@@ -91,7 +91,15 @@ def check_irrationality(household_id: str, start_date: datetime, end_date: datet
             continue  # This device can start anytime
             
         # Check occupancy at start time
-        is_wd = not is_weekend(start_time) and not is_holiday(start_time)
+        # Treat holidays as weekend if configured
+        treat_holidays_as_weekend = profile.get('treat_holidays_as_weekend', True)
+        is_holiday_today = is_holiday(start_time)
+        
+        if treat_holidays_as_weekend and is_holiday_today:
+            is_wd = False  # Treat holiday as weekend
+        else:
+            is_wd = not is_weekend(start_time) and not is_holiday_today
+            
         threshold = threshold_weekday if is_wd else threshold_weekend
         
         occupancy_prob = get_occupancy_probability(
