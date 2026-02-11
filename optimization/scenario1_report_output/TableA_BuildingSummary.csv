@@ -1,0 +1,11 @@
+Metric,Scenario 0 (Baseline),Scenario 1 (PV+BESS)
+Total Load (kWh),338199.73349008814,338199.73349008814
+PV Generation (kWh),0.0,42904.957513239904
+Grid Import (kWh),338199.73349008814,295593.4263239271
+Grid Export (kWh),0.0,0.0
+Curtailment (kWh),0.0,129.69364333058158
+Operational Cost (€),39563.85031382097,34235.22489652063
+Annualized CAPEX (€),0.0,3034.97412986328
+Total Annual Cost (€),39563.85031382097,37270.19902638391
+Savings (Operational) (€),0.0,5328.62541730034
+Net Savings (Total) (€),0.0,2293.65128743706
