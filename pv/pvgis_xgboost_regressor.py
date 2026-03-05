@@ -488,9 +488,15 @@ def main(
 
     # Train/Val/Test split (same as your original idea)
     ml_df["year"] = ml_df["dt"].dt.year
-    train = ml_df[ml_df["year"].between(2018, 2021)]
-    val = ml_df[ml_df["year"] == 2022]
-    test = ml_df[ml_df["year"] == 2023]
+    
+    # NEW FIX: Filter to daylight hours only for model training and evaluation
+    # We define daylight broadly as GTI > 0 to let the model focus only on power-generating hours.
+    daylight_mask = ml_df["GTI"] > 0
+    ml_daylight = ml_df[daylight_mask].copy()
+    
+    train = ml_daylight[ml_daylight["year"].between(2018, 2021)]
+    val = ml_daylight[ml_daylight["year"] == 2022]
+    test = ml_daylight[ml_daylight["year"] == 2023]
 
     print(f"Rows total after merge+clean: {len(ml_df)} | Train: {len(train)} | Val: {len(val)} | Test: {len(test)}")
 
@@ -526,24 +532,11 @@ def main(
     pred_val = model.predict(X_val)
     pred_test = model.predict(X_test)
 
-    eval_metrics(y_val, pred_val, "VAL@2022 (all hours)")
-    eval_metrics(y_test, pred_test, "TEST@2023 (all hours)")
+    eval_metrics(y_val, pred_val, "VAL@2022 (daylight hours only)")
+    eval_metrics(y_test, pred_test, "TEST@2023 (daylight hours only)")
 
-    # Daylight-only evaluation (use PVGIS H_sun if available; else use solar elevation feature)
-    if "H_sun" in val.columns:
-        val_day = val["H_sun"].fillna(0).to_numpy() > 0
-    else:
-        val_day = val.get("solar_elev_deg", pd.Series(0, index=val.index)).to_numpy() > 0
-
-    if "H_sun" in test.columns:
-        test_day = test["H_sun"].fillna(0).to_numpy() > 0
-    else:
-        test_day = test.get("solar_elev_deg", pd.Series(0, index=test.index)).to_numpy() > 0
-
-    if np.any(val_day):
-        eval_metrics(y_val[val_day], pred_val[val_day], "VAL@2022 (daylight)")
-    if np.any(test_day):
-        eval_metrics(y_test[test_day], pred_test[test_day], "TEST@2023 (daylight)")
+    # We removed the separate "daylight-only" vs "all-hours" evaluations 
+    # since the model is now ONLY trained and evaluated on daylight hours.
 
     # -----------------------------------------
     # Predict for desired year from Open-Meteo
@@ -565,7 +558,18 @@ def main(
         use_solar_pos=use_solar_pos,
     )
     pred_ml = pred_ml.dropna(subset=feature_cols).copy()
-    pred_ml["P_pred"] = pd.Series(model.predict(pred_ml[feature_cols]), index=pred_ml.index).clip(lower=0)
+    
+    # NEW FIX: Explicitly set nighttime predictions to 0
+    # First, initialize all predictions to 0
+    pred_ml["P_pred"] = 0.0
+    
+    # Then, only predict for daylight hours (GTI > 0)
+    pred_daylight = pred_ml["GTI"] > 0
+    if pred_daylight.any():
+        pred_ml.loc[pred_daylight, "P_pred"] = pd.Series(
+            model.predict(pred_ml.loc[pred_daylight, feature_cols]),
+            index=pred_ml[pred_daylight].index
+        ).clip(lower=0)
 
     # Save output
     out = pd.DataFrame({
